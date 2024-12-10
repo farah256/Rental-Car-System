@@ -10,9 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CarRentelSystemBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CarRentelSystemBackendApplication.class, args);
-    }
 
+        SpringApplication.run(CarRentelSystemBackendApplication.class, args);
+
+    }
+//
 //    @Bean
 //    CommandLineRunner start(UserRepository userRepository, AccountService accountService, RoleRepository roleRepository)
 //    {
