@@ -1,6 +1,7 @@
 package com.example.carrentelsystembackend.Mapper;
 
 import com.example.carrentelsystembackend.dto.VehiculeDTO;
+import com.example.carrentelsystembackend.entity.Vehicule;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
