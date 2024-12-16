@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Repository
 public interface VehiculeRepository extends JpaRepository<Vehicule,String> {
+    Vehicule findByMatricule(String matricule);
 }

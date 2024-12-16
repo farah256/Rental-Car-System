@@ -23,7 +23,7 @@ public class Vehicule {
     private float price;
     @Enumerated(EnumType.STRING)
     @NotNull
-    private VehiculeStatut statu;
+    private VehiculeStatut statu=VehiculeStatut.Available;
     private String image;
 
     public Vehicule() {

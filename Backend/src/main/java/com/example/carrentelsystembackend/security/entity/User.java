@@ -1,7 +1,7 @@
 package com.example.carrentelsystembackend.security.entity;
 
 
-import com.example.carrentelsystembackend.security.entity.Role;
+
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
