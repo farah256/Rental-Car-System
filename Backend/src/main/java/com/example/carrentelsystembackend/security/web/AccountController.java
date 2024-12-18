@@ -37,6 +37,8 @@ public class AccountController {
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody User request) {
+        User user = authentificationService.register(request);
+        System.out.println("User:"+user.toString());
 
         return ResponseEntity.ok(authentificationService.register(request));
     }

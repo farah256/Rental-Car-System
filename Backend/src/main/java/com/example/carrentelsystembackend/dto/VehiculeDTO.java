@@ -2,6 +2,12 @@ package com.example.carrentelsystembackend.dto;
 
 import com.example.carrentelsystembackend.enums.VehiculeStatut;
 import com.example.carrentelsystembackend.enums.VehiculeType;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Type;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VehiculeDTO {
 
@@ -11,29 +17,15 @@ public class VehiculeDTO {
     private int year;
     private VehiculeType type;
     private float price;
-    private VehiculeStatut statu;
-    private String image;
+    private VehiculeStatut statu = VehiculeStatut.Available;
+    private byte[] image;
+
 
     public VehiculeDTO() {
     }
 
-    public VehiculeDTO(String matricule, String brand,
-                       String model, int year, VehiculeType type,
-                       float price, VehiculeStatut statu,
-                       String image) {
+    public VehiculeDTO(String matricule, String brand, String model, int year, VehiculeType type, float price, VehiculeStatut statu, byte[] image) {
         this.matricule = matricule;
-        this.brand = brand;
-        this.model = model;
-        this.year = year;
-        this.type = type;
-        this.price = price;
-        this.statu = statu;
-        this.image = image;
-    }
-
-    public VehiculeDTO(String brand, String model,
-                       int year, VehiculeType type,
-                       float price, VehiculeStatut statu, String image) {
         this.brand = brand;
         this.model = model;
         this.year = year;
@@ -99,25 +91,14 @@ public class VehiculeDTO {
         this.statu = statu;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
-    @Override
-    public String toString() {
-        return "Vehicule{" +
-                "matricule='" + matricule + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", year=" + year +
-                ", type=" + type +
-                ", price=" + price +
-                ", statu=" + statu +
-                ", image='" + image + '\'' +
-                '}';
-    }
+
+
 }

@@ -3,6 +3,7 @@ package com.example.carrentelsystembackend.security.entity;
 
 import com.example.carrentelsystembackend.security.entity.Role;
 import jakarta.persistence.*;
+import jakarta.validation.OverridesAttribute;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -119,5 +120,15 @@ public class User implements UserDetails {
         return UserDetails.super.isEnabled();
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roleList=" + roleList +
+                '}';
+    }
 }
