@@ -26,6 +26,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173"})
 @RequestMapping("/api/account/vehicules")
 public class VehiculeController {
     private final VehiculeService vehiculeService;
@@ -56,7 +57,7 @@ public class VehiculeController {
                                @RequestParam("image") MultipartFile file){
         vehiculeService.updateVehicule(matricule,vehicule,file);
     }
-    @DeleteMapping("/api/admin/vehicule/{matricule}")
+    @DeleteMapping("{matricule}")
     public void deleteVehicule(@PathVariable String matricule){
         vehiculeService.deleteVehicule(matricule);
     }
