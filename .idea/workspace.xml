@@ -4,32 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="Add reservation and frontend">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Mapper/ReservationMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/ArchiveService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/ContratService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/EmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/ReservationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/ArchiveServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/ContratServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/EmailServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/ReservationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/dto/ReservationDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Archive.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Contrat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Reservation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Retour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/enums/StatusReservation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/exception/ArchiveNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/exception/MailNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/exception/ReservationArchivalNotAllowedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/exception/ReservationNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/repository/ArchiveRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/repository/ReservationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/web/ReservationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/frontend-client" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="Remove git from frontend client.">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_12_2024_15_13_[Changes]/frontend-client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/frontend-client" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/frontend-client" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733854730243</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add reservation and frontend">
+      <created>1734877113020</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1734877113020</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +160,7 @@
     <MESSAGE value="Add Backend" />
     <MESSAGE value="Add" />
     <MESSAGE value="Add reservation and frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add reservation and frontend" />
+    <MESSAGE value="Remove git from frontend client." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove git from frontend client." />
   </component>
 </project>
