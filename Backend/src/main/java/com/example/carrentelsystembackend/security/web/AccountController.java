@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("http://localhost:5173")
 @RequestMapping("/api/account")
 public class AccountController {
 
@@ -37,6 +38,8 @@ public class AccountController {
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody User request) {
+        User user = authentificationService.register(request);
+        System.out.println("User:"+user.toString());
 
         return ResponseEntity.ok(authentificationService.register(request));
     }
