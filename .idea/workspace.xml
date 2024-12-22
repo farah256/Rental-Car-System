@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Retour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/CarCollection.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/HowItWorks.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/howItsWork.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/ourServices.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/PdfServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +28,7 @@
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/frontend" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -96,7 +83,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;d2f1b336f637db1395f0202fe4700473&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\AdMin\\Desktop\\javaEE\\Rental-Car-System\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\AdMin\\Desktop\\javaEE\\Rental-Car-System\\Frontend\\frontend-rental-car-client\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -112,6 +99,10 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\AdMin\Desktop\javaEE\Rental-Car-System\Backend\src\main\java\com\example\carrentelsystembackend" />
       <recent name="C:\Users\AdMin\Desktop\javaEE\Rental-Car-System\Backend\src\main\resources\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\AdMin\Desktop\javaEE\Rental-Car-System\Frontend\frontend-rental-car-client\src" />
+      <recent name="C:\Users\AdMin\Desktop\javaEE\Rental-Car-System\Frontend\frontend-rental-car-client" />
     </key>
   </component>
   <component name="RunManager">
@@ -155,6 +146,8 @@
       <workItem from="1734849440102" duration="36000" />
       <workItem from="1734851578588" duration="1670000" />
       <workItem from="1734872347634" duration="1135000" />
+      <workItem from="1734902125879" duration="29000" />
+      <workItem from="1734902696540" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="Add Backend">
       <option name="closed" value="true" />
