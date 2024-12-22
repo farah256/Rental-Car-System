@@ -59,6 +59,7 @@ public class AccountController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             //Creer le tocken
             String jwtToken=jwtService.generateToken(user);
+            System.out.println("####token"+jwtToken);
             // stoker token dans le header du response
             HttpHeaders responseHttpHeaders=new HttpHeaders();
             responseHttpHeaders.add("Access-Control-Expose-Headers","Authorization");

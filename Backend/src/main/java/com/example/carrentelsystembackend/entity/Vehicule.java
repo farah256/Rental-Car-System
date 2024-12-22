@@ -4,10 +4,6 @@ import com.example.carrentelsystembackend.enums.VehiculeStatut;
 import com.example.carrentelsystembackend.enums.VehiculeType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.Type;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "vehicule")
@@ -27,14 +23,16 @@ public class Vehicule {
     private float price;
     @Enumerated(EnumType.STRING)
     @NotNull
-    private VehiculeStatut statu = VehiculeStatut.Available;
-    @Lob
-    private byte[] image;
+    private VehiculeStatut statu;
+    private String image;
 
     public Vehicule() {
     }
 
-    public Vehicule(String matricule, String brand, String model, int year, VehiculeType type, float price, VehiculeStatut statu, byte[] image) {
+    public Vehicule(String matricule, String brand,
+                    String model, int year, VehiculeType type,
+                    float price, VehiculeStatut statu,
+                    String image) {
         this.matricule = matricule;
         this.brand = brand;
         this.model = model;
@@ -44,6 +42,7 @@ public class Vehicule {
         this.statu = statu;
         this.image = image;
     }
+
     public String getMatricule() {
         return matricule;
     }
@@ -100,15 +99,25 @@ public class Vehicule {
         this.statu = statu;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Vehicule{" +
+                "matricule='" + matricule + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", type=" + type +
+                ", price=" + price +
+                ", statu=" + statu +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }
