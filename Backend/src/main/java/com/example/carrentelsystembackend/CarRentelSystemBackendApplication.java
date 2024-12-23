@@ -1,8 +1,5 @@
 package com.example.carrentelsystembackend;
-//
-//import com.example.carrentelsystembackend.Service.AccountService;
-//import com.example.carrentelsystembackend.repository.RoleRepository;
-//import com.example.carrentelsystembackend.repository.UserRepository;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

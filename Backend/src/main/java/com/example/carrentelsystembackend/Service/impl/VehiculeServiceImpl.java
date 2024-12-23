@@ -71,19 +71,11 @@ public class VehiculeServiceImpl implements VehiculeService {
 
             // Update vehicle properties
             vehicule.setType(vehiculeDTO.getType());
-            vehicule.setStatu(vehiculeDTO.getStatu());
             vehicule.setPrice(vehiculeDTO.getPrice());
 
-            // If a new image file is provided, update the image
-//            if (imageFile != null && !imageFile.isEmpty()) {
-//                String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
-//                if (fileName.contains("..")) {
-//                    throw new RuntimeException("Invalid file path: " + fileName);
-//                }
 
                 // Convert image to Base64 string and set it
                 vehicule.setImage(imageFile.getBytes());
-//            }
 
             // Save the updated vehicle back to the database
             vehiculeRepository.save(vehicule);
@@ -92,6 +84,15 @@ public class VehiculeServiceImpl implements VehiculeService {
         } catch (Exception e) {
             throw new RuntimeException("Unable to update vehicle: " + e.getMessage());
         }
+    }
+
+    @Override
+    public void updateStatutVehicule(String matricule, VehiculeStatut statut) {
+        Vehicule vehicule = vehiculeRepository.findById(matricule)
+                .orElseThrow(() -> new OurException("Vehicule with matricule [" + matricule + "] not found!"));
+        vehicule.setStatu(statut);
+        vehiculeRepository.save(vehicule);
+
     }
 
 

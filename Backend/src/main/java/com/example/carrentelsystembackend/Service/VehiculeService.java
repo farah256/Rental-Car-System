@@ -15,6 +15,8 @@ public interface VehiculeService {
     public VehiculeDTO getVehiculeById(String matricule);
     public void addVehicule(VehiculeDTO vehiculeDTO, MultipartFile imageFile)throws IOException;
     public void updateVehicule(String matricule, VehiculeDTO vehiculeDTO, MultipartFile imageFile);
+    public void updateStatutVehicule(String matricule, VehiculeStatut statut);
+
     public void deleteVehicule(String matricule);
     public List<Vehicule> searchVehicules(String keyword) ;
     public Page<Vehicule> findVehiculesWithPagination(int offset, int pageSize);
