@@ -51,7 +51,7 @@ const FormSection = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const LoginPage = () => {
+const Login = () => {
   const [values, setValues] = useState({
     username: '',
     password: '',
@@ -190,4 +190,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
