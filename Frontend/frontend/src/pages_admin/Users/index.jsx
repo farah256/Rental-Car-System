@@ -1,7 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme.js";
-import { mockDataTeam } from "../../../../frontend_car_admin/src/data/mockData.js";
 import Header from "../../components_admin/Header.jsx";
 
 const Team = () => {
@@ -66,7 +65,7 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        <DataGrid/>
       </Box>
     </Box>
   );
