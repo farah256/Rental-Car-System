@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { Route, Routes, useLocation } from "react-router-dom";
 import Login from './Login';
@@ -6,23 +6,15 @@ import Registration from './Registration';
 import Home from './pages_client/Home.jsx';
 import HeaderC from "./components_client/global/Header/Header";
 import FooterC from "./components_client/global/Footer/Footer";
-import { useState } from "react";
-import { ColorModeContext,useMode } from "./theme.js";
-import { CssBaseline} from "@mui/material";
+import { ColorModeContext, useMode } from "./theme.js";
+import { CssBaseline } from "@mui/material";
 import Topbar from "../src/pages_admin/global/topbar";
 import Sidebar from "../src/pages_admin/global/sidebar";
 import Dashboard from "./pages_admin/dashboard";
 import Users from "../src/pages_admin/Users";
 import Vehicles from "../src/pages_admin/Vehicles";
 
-// import Booking from "./scenes/Booking";
-// import Payment from "./scenes/Payment";
-// import Notifications from "./scenes/Notifications";
-// import Calendar from "./scenes/Calendar";
-// import Settings from "./scenes/Settings";
-const theme = createTheme({
-    // You can customize your theme here
-});
+const theme = createTheme();
 
 function AppLayout({ children }) {
     const location = useLocation();
@@ -38,28 +30,28 @@ function AppLayout({ children }) {
 }
 
 function App() {
-    const [theme,colorMode]=useMode();
+    const [theme, colorMode] = useMode();
     const [isSidebar, setIsSidebar] = useState(true);
-
 
     return (
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Routes>
+                    {/* Routes without Header/Footer */}
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/registration" element={<Registration />} />
+
                     {/* Client Routes */}
                     <Route
                         path="/"
                         element={
                             <AppLayout>
-                                <Routes>
-                                    <Route path="/" element={<Home />} />
-                                    <Route path="/login" element={<Login />} />
-                                    <Route path="/registration" element={<Registration />} />
-                                </Routes>
+                                <Home />
                             </AppLayout>
                         }
                     />
+
                     {/* Admin Routes */}
                     <Route
                         path="/admin/*"
