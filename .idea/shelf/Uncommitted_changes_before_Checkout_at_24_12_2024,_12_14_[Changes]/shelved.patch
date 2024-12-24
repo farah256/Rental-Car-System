@@ -1,0 +1,18 @@
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-222.4554.10\">\n    <data-source name=\"RentalCar@localhost\" uuid=\"d7b37dba-3c63-4a63-88f6-a274425f7575\">\n      <database-info product=\"\" version=\"\" jdbc-version=\"\" driver-name=\"\" driver-version=\"\" dbms=\"MYSQL\" exact-version=\"0\" />\n      <user-name>root</user-name>\n      <schema-mapping />\n    </data-source>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision caaac678604d38449ecfcb0ef6f095848063d135)
++++ b/.idea/dataSources.local.xml	(date 1735038743497)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-222.4554.10">
++  <component name="dataSourceStorageLocal" created-in="IU-243.21565.193">
+     <data-source name="RentalCar@localhost" uuid="d7b37dba-3c63-4a63-88f6-a274425f7575">
+       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+       <user-name>root</user-name>
