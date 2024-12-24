@@ -1,0 +1,74 @@
+.header-section {
+    padding: 12px 8px;
+    width: 2000px;
+    position: absolute;
+    top: 0;
+    z-index: 999;
+}
+
+.header-logo {
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.is-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    animation: smothScroll 1s forwards;
+    background: var(--white);
+    z-index: 999;
+    box-shadow: var(--bs-box-shadow-sm) !important;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.is-sticky .navbar .navbar-brand a,
+.is-sticky .navbar .offcanvas-body a {
+    color: var(--black) !important;
+}
+
+header .navbar .navbar-brand {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+header .navbar .offcanvas-body a {
+    font-size: 14px;
+    color: var(--white) !important;
+    line-height: 150%;
+    font-family: var(--fontFamily);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+header .navbar .offcanvas-body .dropdown-menu {
+    min-width: 12rem;
+}
+
+/* Ensuring Login/Register button aligns to the right */
+header .w-100 {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .ms-md-4, .ms-2 {
+    padding-left: 100px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .is-sticky {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .menu-icon {
+        font-size: 30px;
+        cursor: pointer;
+        color: #000;  /* Adjust the color of the icon */
+    }
+
+}

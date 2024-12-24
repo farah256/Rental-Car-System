@@ -55,8 +55,7 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setStatusReservation(StatusReservation.IN_PROGRESS);
         // update vehicule status
         VehiculeDTO vehiculeDTO =vehiculeService.getVehiculeById(reservationDTO.getMatricule());
-        vehiculeDTO.setStatu(VehiculeStatut.Waiting);
-        vehiculeService.updateVehicule(vehiculeDTO.getMatricule(),vehiculeDTO);
+        vehiculeService.updateStatutVehicule(vehiculeDTO.getMatricule(),VehiculeStatut.Waiting);
         // save reservation
         Reservation reservationSaved=reservationRepository.save(reservation);
 
@@ -70,8 +69,8 @@ public class ReservationServiceImpl implements ReservationService {
 
         // update vehicule status
         VehiculeDTO vehiculeDTO =vehiculeService.getVehiculeById(reservation.getVehicule().getMatricule());
-        vehiculeDTO.setStatu(VehiculeStatut.Available);
-        vehiculeService.updateVehicule(vehiculeDTO.getMatricule(),vehiculeDTO);
+
+        vehiculeService.updateStatutVehicule(vehiculeDTO.getMatricule(),VehiculeStatut.Available);
        // reservation
         reservation.setStatusReservation(StatusReservation.CANCELLED);
 
@@ -94,8 +93,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         // Mise à jour du statut du véhicule
         VehiculeDTO vehiculeDTO = vehiculeService.getVehiculeById(reservation.getVehicule().getMatricule());
-        vehiculeDTO.setStatu(VehiculeStatut.Booked);
-        vehiculeService.updateVehicule(vehiculeDTO.getMatricule(), vehiculeDTO);
+        vehiculeService.updateStatutVehicule(vehiculeDTO.getMatricule(), VehiculeStatut.Booked);
 
         // Mise à jour du statut de la réservation
         reservation.setStatusReservation(StatusReservation.CONFIRMED);

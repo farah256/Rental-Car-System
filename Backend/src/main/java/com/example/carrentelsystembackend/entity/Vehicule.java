@@ -23,8 +23,8 @@ public class Vehicule {
     private float price;
     @Enumerated(EnumType.STRING)
     @NotNull
-    private VehiculeStatut statu=VehiculeStatut.Available;
-    private String image;
+    private VehiculeStatut statu;
+    private byte[] image;
 
     public Vehicule() {
     }
@@ -32,7 +32,7 @@ public class Vehicule {
     public Vehicule(String matricule, String brand,
                     String model, int year, VehiculeType type,
                     float price, VehiculeStatut statu,
-                    String image) {
+                    byte[] image) {
         this.matricule = matricule;
         this.brand = brand;
         this.model = model;
@@ -99,11 +99,11 @@ public class Vehicule {
         this.statu = statu;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

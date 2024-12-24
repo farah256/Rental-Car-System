@@ -11,9 +11,10 @@ import java.io.File;
 
 @Service
 public class EmailServiceImpl implements EmailService  {
-    private  JavaMailSender javaMailSender;
+    private JavaMailSender javaMailSender;
 
     public EmailServiceImpl(JavaMailSender javaMailSender) {
+
         this.javaMailSender = javaMailSender;
     }
 

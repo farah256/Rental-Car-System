@@ -17,15 +17,20 @@ import java.util.*;
 public class JwtServiceImpl implements JwtService {
     @Value("${jwt.secret}")
     private String secretKey;
+    private TokenBlacklistService tokenBlacklistService;
     long expirationTime = 86400000L; // 1 jour en millisecondes
 
-    @Override
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+    public JwtServiceImpl(TokenBlacklistService tokenBlacklistService) {
+        this.tokenBlacklistService = tokenBlacklistService;
     }
 
     @Override
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails) {
+        return generateRefreshToken(new HashMap<>(), userDetails);
+    }
+
+    @Override
+    public String generateRefreshToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>(); // Stocker les données inclus dans le JWT
         List<String> roles = new ArrayList<>();
         for (GrantedAuthority authority : userDetails.getAuthorities()) {
@@ -77,11 +82,6 @@ public class JwtServiceImpl implements JwtService {
         return claims.getSubject(); // "sub" correspond au nom d'utilisateur dans les claims
     }
 
-    @Override
-    public List<String> extractRoles(String token) {
-        Claims claims = extractAllClaims(token);
-        return claims.get("roles", List.class);
-    }
 
     @Override
     public boolean isTokenExpired(String token) {
@@ -90,9 +90,10 @@ public class JwtServiceImpl implements JwtService {
         return expiration.before(new Date());
     }
 
-    @Override
     public Boolean isTokenValid(String token, UserDetails userDetails) {
-        String username = extractUsername(token); // Passez le token ici
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()))
+                && !isTokenExpired(token)
+                && !tokenBlacklistService.isTokenBlacklisted(token); // Ajoutez cette vérification
     }
 }

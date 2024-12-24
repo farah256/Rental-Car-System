@@ -1,10 +1,8 @@
 package com.example.carrentelsystembackend.security.util;
 
 
-import com.example.carrentelsystembackend.security.service.AccountService;
 import com.example.carrentelsystembackend.security.service.JwtService;
-import com.example.carrentelsystembackend.security.service.impl.AccountServiceImpl;
-import com.nimbusds.jose.proc.SecurityContext;
+import com.example.carrentelsystembackend.security.service.impl.OurUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,8 +25,8 @@ import java.util.Enumeration;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private JwtService jwtService ;
-    private AccountServiceImpl accountService;
-    public JwtAuthFilter(JwtService jwtService,AccountServiceImpl accountService) {
+    private OurUserDetailsService accountService;
+    public JwtAuthFilter(JwtService jwtService, OurUserDetailsService accountService) {
 
         this.jwtService = jwtService;
         this.accountService=accountService;

@@ -2,7 +2,9 @@ package com.example.carrentelsystembackend.security.entity;
 
 
 
+import com.example.carrentelsystembackend.enums.RoleName;
 import jakarta.persistence.*;
+import jakarta.validation.OverridesAttribute;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,44 +17,50 @@ import java.util.List;
 @Table(name = "users")
 
 public class User implements UserDetails {
+
+    // attributes
     @Id @GeneratedValue
     private Long id;
     private String firstname ;
     private String lastname;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private RoleName role;
+    private String adresse;
+    private String phone;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roleList;
 
+    // constructors
     public User() {
 
     }
 
-    public User(Long id, String firstname, String lastname, String email, String password) {
+    public User(Long id, String firstname, String lastname, String email, String password, RoleName role, String adresse, String phone) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.role = role;
+        this.adresse = adresse;
+        this.phone = phone;
     }
 
-    public User(String firstname, String lastname, String email, String password) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
+     // Getters et Setters
+    public RoleName getRole() {return role;}
+    public void setRole(RoleName role) {this.role = role;}
+
+    public String getAdresse() {
+        return adresse;
     }
 
-    public List<Role> getRoleList() {
-        return roleList;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
-    }
-
-    //getters and setters
+    public String getPhone() {return phone;}
+    public void setPhone(String phone) {this.phone = phone;}
     public Long getId() {
         return id;
     }
@@ -88,10 +96,7 @@ public class User implements UserDetails {
     // User Detail Method
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority>authorities=new ArrayList<>();
-        this.roleList.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRoleName().toString())));
-
-        return authorities;
+        return List.of(new SimpleGrantedAuthority(role.toString()));
     }
 
     @Override
@@ -119,5 +124,17 @@ public class User implements UserDetails {
         return UserDetails.super.isEnabled();
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", adresse='" + adresse + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }

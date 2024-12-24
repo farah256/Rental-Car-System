@@ -1,6 +1,7 @@
 package com.example.carrentelsystembackend.Mapper;
 
 import com.example.carrentelsystembackend.dto.ReservationDTO;
+import com.example.carrentelsystembackend.dto.VehiculeDTO;
 import com.example.carrentelsystembackend.entity.Reservation;
 import com.example.carrentelsystembackend.entity.Vehicule;
 import com.example.carrentelsystembackend.repository.VehiculeRepository;
@@ -9,14 +10,19 @@ import com.example.carrentelsystembackend.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class ReservationMapper {
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
+    private UserRepository userRepository;
     private VehiculeRepository vehiculeRepository;
+
+    public ReservationMapper(UserRepository userRepository, VehiculeRepository vehiculeRepository) {
+        this.userRepository = userRepository;
+        this.vehiculeRepository = vehiculeRepository;
+    }
 
     // Mapper pour convertir une entité Reservation en DTO
     public ReservationDTO toDTO(Reservation reservation) {
@@ -49,12 +55,11 @@ public class ReservationMapper {
                 .orElseThrow(() -> new RuntimeException("User not found with ID: " + reservationDTO.getUserId()));
         reservation.setUser(user);
 
-        // Récupération de l'entité Vehicule à partir du matricule dans le DTO
-        Vehicule vehicule = vehiculeRepository.findByMatricule(reservationDTO.getMatricule());
-        if (vehicule == null) {
-            throw new RuntimeException("Vehicule not found with matricule: " + reservationDTO.getMatricule());
-        }
+        // Récupération du véhicule via le matricule
+        Vehicule vehicule = vehiculeRepository.findById(reservationDTO.getMatricule())
+                .orElseThrow(() -> new RuntimeException("Vehicule not found with matricule: " + reservationDTO.getMatricule()));
         reservation.setVehicule(vehicule);
+
 
         return reservation;
     }
