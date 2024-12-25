@@ -17,10 +17,10 @@ const Banner = () => {
             />
             <div className="content-overlay">
                 <div className="text-content">
-                    <h1 className="banner-heading">
+                    <h2 className="banner-heading">
                         Your Journey, Your<br />
                         Car, Your Way.
-                    </h1>
+                    </h2>
                     <p className="banner-text">
                         Choose the perfect car for your adventure, from city drives to road
                         trips. Enjoy flexibility, comfort, and safety with our reliable rental
