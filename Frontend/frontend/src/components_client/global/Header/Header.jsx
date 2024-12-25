@@ -4,109 +4,88 @@ import {
     Navbar,
     Offcanvas,
     Nav,
-    NavDropdown,
 } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom"; // Import useNavigate
-import { FaBars } from "react-icons/fa"; // Import the hamburger icon
-import "./Header.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import "../Header/Header.css";
 
 const Header = () => {
-    const [show, setShow] = useState(false);
-    const navigate = useNavigate(); // Initialize navigate
+    const [open, setOpen] = useState(false);
+    const [logo, setLogo] = useState("/images_client/2-removebg-preview (2).png"); // Default logo
+    const navigate = useNavigate(); // Hook to programmatically navigate
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const toggleMenu = () => {
+        setOpen(!open);
+    };
 
     useEffect(() => {
-        window.addEventListener("scroll", isSticky);
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener("scroll", isSticky);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
-    const isSticky = (e) => {
+    const handleScroll = () => {
         const header = document.querySelector(".header-section");
         const scrollTop = window.scrollY;
-        scrollTop >= 120
-            ? header.classList.add("is-sticky")
-            : header.classList.remove("is-sticky");
+        if (scrollTop >= 120) {
+            header.classList.add("is-sticky");
+            setLogo("/images_client/3-removebg-preview.png"); // Sticky logo when scrolled down
+        } else {
+            header.classList.remove("is-sticky");
+            setLogo("/images_client/2-removebg-preview (2).png"); // Default logo
+        }
     };
 
     const closeMenu = () => {
         if (window.innerWidth <= 991) {
-            handleClose();
+            setOpen(false);
         }
     };
 
-    // Function to navigate to the login page
+    // Navigate to login page
     const handleLoginNavigate = () => {
-        navigate("/login"); // Replace "/login" with your actual login route
+        navigate("/login");
     };
 
     return (
         <header className="header-section">
             <Container>
-                <Navbar expand={false} className="p-0">
-                    <div className="w-100 d-flex align-items-center justify-content-between">
-                        {/* Hamburger Icon */}
-                        <div className="d-block d-md-none" onClick={handleShow}>
-                            <FaBars className="menu-icon" /> {/* Display the menu icon */}
-                        </div>
-
-                        {/* Logo Section */}
-                        <Navbar.Brand className="mx-auto">
-                            <NavLink to="/">
-                                <img
-                                    src="../../../public/images_client/2-removebg-preview (2).png"
-                                    alt="Logo"
-                                    className="header-logo"
-                                />
-                            </NavLink>
-                        </Navbar.Brand>
-
-                        {/* Login/Register Button */}
-                        <div className="ms-md-4 ms-2">
-                            <button
-                                className="banner-btn see-all"
-                                onClick={handleLoginNavigate} // Navigate to login page
-                            >
-                                Login/Registre
-                            </button>
-                        </div>
-                    </div>
+                <Navbar expand="lg" className="p-0">
+                    {/* Logo Section */}
+                    <Navbar.Brand>
+                        <img
+                            src={logo}
+                            alt="Logo"
+                            className={`header-logo`}
+                        />
+                    </Navbar.Brand>
+                    {/* End Logo Section */}
 
                     <Navbar.Offcanvas
-                        id="offcanvasNavbar"
-                        aria-labelledby="offcanvasNavbarLabel"
+                        id={`offcanvasNavbar-expand-lg`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
                         placement="start"
-                        show={show}
-                        onHide={handleClose}
+                        show={open}
                     >
-                        <Offcanvas.Header closeButton>
-                            <h1 className="logo">Menu</h1>
+                        {/* Mobile Logo Section */}
+                        <Offcanvas.Header>
+                            <h1 className="logo">Weekendmonks</h1>
+                            <span className="navbar-toggler ms-auto" onClick={toggleMenu}>
+                                <i className="bi bi-x-lg"></i>
+                            </span>
                         </Offcanvas.Header>
+                        {/* End Mobile Logo Section */}
+
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <NavLink className="nav-link" to="/" onClick={closeMenu}>
                                     Home
                                 </NavLink>
-                                <NavLink className="nav-link" to="/about-us" onClick={closeMenu}>
-                                    ABOUT US
+                                <NavLink className="nav-link" to="/vehicles" onClick={closeMenu}>
+                                    Vehicles
                                 </NavLink>
-                                <NavLink className="nav-link" to="/tours" onClick={closeMenu}>
-                                    TOURS
-                                </NavLink>
-                                <NavDropdown title="DESTINATION" id="offcanvasNavbarDropdown">
-                                    <NavLink
-                                        className="nav-link text-dark"
-                                        to="/destinations"
-                                        onClick={closeMenu}
-                                    >
-                                        SPAIN TOURS
-                                    </NavLink>
-                                </NavDropdown>
-                                <NavLink className="nav-link" to="/gallery" onClick={closeMenu}>
-                                    GALLERY
+                                <NavLink className="nav-link" to="/rent" onClick={closeMenu}>
+                                    Rent
                                 </NavLink>
                                 <NavLink className="nav-link" to="/contact-us" onClick={closeMenu}>
                                     CONTACT
@@ -114,6 +93,15 @@ const Header = () => {
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
+                    {/* Login/Register Button */}
+                    <div className="ms-md-4 ms-2">
+                        <button
+                            className="banner-btn see-all"
+                            onClick={handleLoginNavigate}
+                        >
+                            Login/Register
+                        </button>
+                    </div>
                 </Navbar>
             </Container>
         </header>

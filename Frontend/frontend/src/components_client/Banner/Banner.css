@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Playwrite+AU+VIC+Guides&family=Roboto+Slab:wght@100..900&display=swap');
 .banner-container {
     position: relative;
     width: 100%;
@@ -25,34 +26,33 @@
 
 .text-content {
     text-align: left;
-    padding-left: 80px;
+    padding-left: 60px;
     max-width: 1000px;
     color: white;
 }
 
 .banner-heading {
-    font-size: 4rem;
-    font-weight: 700;
+    font-family: "Roboto Slab", serif;
+    font-size: 3.9rem;
+    font-weight: 800;
     margin-bottom: 1.5rem;
     line-height: 1.2;
-    font-family: serif;
     letter-spacing: -0.5px;
+    max-width: 900px;
+
 }
 
 .banner-text {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     line-height: 1.6;
     margin-bottom: 2.5rem;
     opacity: 0.9;
     font-weight: 300;
-    max-width: 500px;
+    max-width: 650px;
     color: white;
 }
 
-.button-group {
-    display: flex;
-    gap: 1rem;
-}
+
 
 .banner-btn {
     padding: 0.8rem 2rem;
@@ -67,6 +67,8 @@
 .banner-btn.book-now {
     background-color: rgba(255, 255, 255, 0.9);
     color: #000;
+    padding: 8px 20px;
+    margin-right: 10px;
 }
 
 .banner-btn.book-now:hover {
@@ -74,15 +76,21 @@
 }
 
 .banner-btn.see-all {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 255);
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .banner-btn.see-all:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-    border-color: rgba(255, 255, 255, 255);
+    background: var(--white);
+    color: var(--black);
 }
+
 
 @media only screen and (max-width: 768px) {
     .banner-heading {
