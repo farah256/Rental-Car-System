@@ -27,7 +27,7 @@ const Search = () => {
                                         startDate={startDate}
                                         endDate={endDate}
 
-                                        dateFormat="dd/MM/yyyy"
+                                        dateFormat="dd, MMMM, yyyy"
                                     />
                                 </div>
                                 <div className="item-search item-search-2">
@@ -38,12 +38,12 @@ const Search = () => {
                                         selectsEnd
                                         startDate={endDate}
                                         endDate={startDate}
-                                        dateFormat="dd/MM/yyyy"
+                                        dateFormat="dd, MMMM, yyyy"
                                     />
                                 </div>
 
                                 <button className="search-btn">
-                                    Find a Vehicle
+                                    Find a Vehicle ->
                                 </button>
                             </div>
                         </Col>
