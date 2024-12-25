@@ -1,7 +1,13 @@
 import React from 'react';
 import './Banner.css';
+import {useNavigate} from "react-router-dom";
 
 const Banner = () => {
+    const navigate = useNavigate();
+
+    const handleSeeAllCars = () => {
+        navigate('/cars');
+    };
     return (
         <section className="banner-container">
             <img
@@ -21,10 +27,10 @@ const Banner = () => {
                         service. Travel your way, every time.
                     </p>
                     <div className="button-group">
-                        <button className="banner-btn book-now">
+                        <button className="banner-btn book-now" >
                             Book Now
                         </button>
-                        <button className="banner-btn see-all">
+                        <button className="banner-btn see-all" onClick={handleSeeAllCars}>
                             See all Cars
                         </button>
                     </div>

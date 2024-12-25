@@ -22,6 +22,7 @@ import Vehicles from "./pages_admin/Vehicles";
 
 // Service utilisateur pour vérifier l'authentification et les rôles
 import UserService from './service/UserService.js';
+import CarRentalPage from "./CarRentalPage/index.jsx";
 
 const theme = createTheme();
 
@@ -50,6 +51,7 @@ function App() {
                 <Routes>
                     {/* Routes publiques */}
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/cars" element={<CarRentalPage />} />
                     <Route path="/registration" element={<RegistrationPage />} />
 
                     {/* Routes client */}
