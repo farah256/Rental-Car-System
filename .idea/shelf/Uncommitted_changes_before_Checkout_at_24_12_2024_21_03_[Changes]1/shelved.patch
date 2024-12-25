@@ -1,0 +1,160 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,62 +4,13 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="implementing User Management">
+-      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/global/Sidebar.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/.gitignore" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/README.md" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/eslint.config.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/index.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/package-lock.json" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/package.json" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/public/images/4-removebg-preview.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/public/images_admin/4-removebg-preview.png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/public/images/926660d7278d417ef012516f7c877087.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/public/images_admin/926660d7278d417ef012516f7c877087.jpg" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/public/vite.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/public/vite.svg" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/App.jsx" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/api/axios.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/api/axios.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/assets/react.svg" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/components/Auth/Login/index.jsx" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/components/Auth/Registration/index.jsx" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/components/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_admin/AuthContext.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_admin/Header.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/components/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_admin/ProtectedRoute.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/data/mockData.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/index_admin.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/main.jsx" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/scenes/Dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Dashboard/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/scenes/Users/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/scenes/Vehicles/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Vehicles/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/scenes/global/Sidebar.jsx" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/scenes/global/Topbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/global/Topbar.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/src/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/theme.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_admin/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/vite.config.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/.gitignore" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/README.md" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/eslint.config.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/index.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/package-lock.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/package.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/public/2-removebg-preview (2).png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/public/images_client/2-removebg-preview (2).png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/public/3-removebg-preview.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/public/images_client/3-removebg-preview.png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/public/Screenshot 2024-12-07 at 13.24.01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/public/images_client/Screenshot 2024-12-07 at 13.24.01.png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/public/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/public/images_client/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/public/vite.svg" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/App.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/App.jsx" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/Login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/Login/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/Registration/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/Registration/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/assets/react.svg" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/components/Banner/Banner.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Banner/Banner.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/components/Banner/Banner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Banner/Banner.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/components/global/Footer/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Footer/Footer.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/components/global/Footer/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Footer/Footer.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/components/global/Header/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Header/Header.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/components/global/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Header/Header.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/index_client.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/main.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_client/Home.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/frontend_car_client/vite.config.js" beforeDir="false" />
++    <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Frontend/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/package-lock.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Frontend/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/package.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users/index.jsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -104,33 +55,33 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RequestMappingsPanelOrder0": "0",
+-    "RequestMappingsPanelOrder1": "1",
+-    "RequestMappingsPanelWidth0": "75",
+-    "RequestMappingsPanelWidth1": "75",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "Spring Boot.CarRentelSystemBackendApplication.executor": "Run",
+-    "WebServerToolWindowFactoryState": "false",
+-    "git-widget-placeholder": "main",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.2",
+-    "run.code.analysis.last.selected.profile": "pProject Default",
+-    "settings.editor.selected.configurable": "application.passwordSafe",
+-    "spring.configuration.checksum": "d2f1b336f637db1395f0202fe4700473",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
++    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
++    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
++    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;Spring Boot.CarRentelSystemBackendApplication.executor&quot;: &quot;Run&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;farah&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,
++    &quot;spring.configuration.checksum&quot;: &quot;d2f1b336f637db1395f0202fe4700473&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="ReactDesignerToolWindowState">
+     <option name="myId2Visible">
+       <map>
+@@ -139,11 +90,6 @@
+       </map>
+     </option>
+   </component>
+-  <component name="RecentsManager">
+-    <key name="MoveFile.RECENT_KEYS">
+-      <recent name="$PROJECT_DIR$" />
+-    </key>
+-  </component>
+   <component name="RunManager">
+     <configuration name="CarRentelSystemBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+       <module name="car-rentel-system-backend" />
+@@ -176,7 +122,8 @@
+       <workItem from="1733853763123" duration="1768000" />
+       <workItem from="1734903474771" duration="152000" />
+       <workItem from="1734903951657" duration="21975000" />
+-      <workItem from="1735052078339" duration="2924000" />
++      <workItem from="1735069947417" duration="160000" />
++      <workItem from="1735070166967" duration="384000" />
+     </task>
+     <task id="LOCAL-00001" summary="Add Backend">
+       <option name="closed" value="true" />
