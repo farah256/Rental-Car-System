@@ -4,7 +4,7 @@ import { Person as PersonIcon, Visibility as VisibilityIcon, VisibilityOff as Vi
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { TextField } from '@mui/material';
-import UserService from "../service/UserService.js";
+import UserService from "../services/UserService.js";
 
 // Create a theme with custom styles for TextField
 const theme = createTheme({

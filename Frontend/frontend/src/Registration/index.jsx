@@ -22,7 +22,7 @@ import {
     Phone as PhoneIcon,
 } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import userService from "../service/UserService.js";
+import userService from "../services/UserService.js";
 const SignUpButton = styled(Button)(({ theme }) => ({
     backgroundColor: 'rgba(0, 0, 0, 0.1)', // Same as your .banner-btn.see-all background color
     color: 'white',
