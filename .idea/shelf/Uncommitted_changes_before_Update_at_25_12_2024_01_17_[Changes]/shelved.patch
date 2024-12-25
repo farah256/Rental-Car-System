@@ -1,0 +1,597 @@
+Index: Frontend/frontend/src/pages_admin/Users/index.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Box, Typography, useTheme } from \"@mui/material\";\r\nimport { DataGrid } from \"@mui/x-data-grid\";\r\nimport { tokens } from \"../../theme.js\";\r\nimport { mockDataTeam } from \"../../../../frontend_car_admin/src/data/mockData.js\";\r\nimport Header from \"../../components_admin/Header.jsx\";\r\n\r\nconst Team = () => {\r\n  const theme = useTheme();\r\n  const colors = tokens(theme.palette.mode);\r\n  const columns = [\r\n    { field: \"id\", headerName: \"ID\" },\r\n    {\r\n      field: \"name\",\r\n      headerName: \"Name\",\r\n      flex: 1,\r\n    },\r\n    {\r\n      field: \"age\",\r\n      headerName: \"Age\",\r\n      type: \"number\",\r\n      headerAlign: \"left\",\r\n      align: \"left\",\r\n    },\r\n    {\r\n      field: \"phone\",\r\n      headerName: \"Phone Number\",\r\n      flex: 1,\r\n    },\r\n    {\r\n      field: \"email\",\r\n      headerName: \"Email\",\r\n      flex: 1,\r\n    },\r\n    \r\n  ];\r\n\r\n  return (\r\n    <Box m=\"20px\">\r\n      <Header title=\"TEAM\" subtitle=\"Managing the Team Members\" />\r\n      <Box\r\n        m=\"40px 0 0 0\"\r\n        height=\"75vh\"\r\n        sx={{\r\n          \"& .MuiDataGrid-root\": {\r\n            border: \"none\",\r\n          },\r\n          \"& .MuiDataGrid-cell\": {\r\n            borderBottom: \"none\",\r\n          },\r\n          \"& .name-column--cell\": {\r\n            color: colors.greenAccent[300],\r\n          },\r\n          \"& .MuiDataGrid-columnHeaders\": {\r\n            backgroundColor: colors.blueAccent[400],\r\n            borderBottom: \"none\",\r\n          },\r\n          \"& .MuiDataGrid-virtualScroller\": {\r\n            backgroundColor: colors.primary[400],\r\n          },\r\n          \"& .MuiDataGrid-footerContainer\": {\r\n            borderTop: \"none\",\r\n            backgroundColor: colors.greenAccent[500],\r\n          },\r\n          \"& .MuiCheckbox-root\": {\r\n            color: `${colors.greenAccent[200]} !important`,\r\n          },\r\n        }}\r\n      >\r\n        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />\r\n      </Box>\r\n    </Box>\r\n  );\r\n};\r\n\r\nexport default Team;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Frontend/frontend/src/pages_admin/Users/index.jsx b/Frontend/frontend/src/pages_admin/Users/index.jsx
+--- a/Frontend/frontend/src/pages_admin/Users/index.jsx	(revision 32206e0bb92620371973fb31eff9ef255d31edd9)
++++ b/Frontend/frontend/src/pages_admin/Users/index.jsx	(date 1735071196995)
+@@ -1,7 +1,6 @@
+ import { Box, Typography, useTheme } from "@mui/material";
+ import { DataGrid } from "@mui/x-data-grid";
+ import { tokens } from "../../theme.js";
+-import { mockDataTeam } from "../../../../frontend_car_admin/src/data/mockData.js";
+ import Header from "../../components_admin/Header.jsx";
+ 
+ const Team = () => {
+@@ -66,7 +65,7 @@
+           },
+         }}
+       >
+-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
++        <DataGrid  />
+       </Box>
+     </Box>
+   );
+Index: Frontend/frontend/src/Login/index.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useState } from 'react';\r\nimport {\r\n    Box,\r\n    Button,\r\n    Card,\r\n    Container,\r\n    Grid,\r\n    IconButton,\r\n    InputAdornment,\r\n    Link,\r\n    TextField,\r\n    Typography,\r\n    styled,\r\n} from '@mui/material';\r\nimport {\r\n    Person as PersonIcon,\r\n    Visibility as VisibilityIcon,\r\n    VisibilityOff as VisibilityOffIcon,\r\n} from '@mui/icons-material';\r\nimport { useNavigate } from 'react-router-dom';\r\n\r\nconst LoginCard = styled(Card)(({ theme }) => ({\r\n    maxWidth: '100%',\r\n    margin: 'auto',\r\n    overflow: 'hidden',\r\n    display: 'flex',\r\n    [theme.breakpoints.down('md')]: {\r\n        flexDirection: 'column',\r\n    },\r\n}));\r\n\r\nconst ImageSection = styled(Box)(({ theme }) => ({\r\n    position: 'relative',\r\n    flex: 1,\r\n    minHeight: 450,\r\n    minWidth: 400,\r\n    display: 'flex',\r\n    flexDirection: 'column',\r\n    justifyContent: 'center',\r\n    alignItems: 'center',\r\n    color: 'white',\r\n    textAlign: 'center',\r\n    padding: theme.spacing(4),\r\n    overflow: 'hidden',\r\n}));\r\n\r\nconst VideoBackground = styled('video')({\r\n    position: 'absolute',\r\n    top: '50%',\r\n    left: '50%',\r\n    minWidth: '100%',\r\n    minHeight: '100%',\r\n    width: 'auto',\r\n    height: 'auto',\r\n    transform: 'translate(-50%, -50%)',\r\n    objectFit: 'cover',\r\n    zIndex: 0,\r\n});\r\n\r\nconst FormSection = styled(Box)(({ theme }) => ({\r\n    flex: 1,\r\n    padding: theme.spacing(4),\r\n    minWidth: 300,\r\n    display: 'flex',\r\n    flexDirection: 'column',\r\n    justifyContent: 'center',\r\n}));\r\n\r\nconst ContentOverlay = styled(Box)({\r\n    position: 'relative',\r\n    zIndex: 2,\r\n    backgroundColor: 'rgba(0, 0, 0, 0.2)',\r\n    minHeight: 450,\r\n    minWidth: 400,\r\n    width: '100%',\r\n    height: '100%',\r\n    display: 'flex',\r\n    flexDirection: 'column',\r\n    justifyContent: 'center',\r\n    alignItems: 'center',\r\n    padding: '2rem',\r\n});\r\n\r\n// New styled component for the sign up button\r\nconst SignUpButton = styled(Button)(({ theme }) => ({\r\n    backgroundColor: 'rgba(255, 255, 255, 0.9)',\r\n    color: '#000',\r\n    borderRadius: '20px',\r\n    padding: '8px 24px',\r\n    textTransform: 'none',\r\n    fontWeight: 500,\r\n    '&:hover': {\r\n        backgroundColor: 'rgba(255, 255, 255, 1)',\r\n    },\r\n}));\r\n\r\nconst Login = () => {\r\n    const [values, setValues] = useState({\r\n        username: '',\r\n        password: '',\r\n        showPassword: false,\r\n    });\r\n    const navigate = useNavigate(); // Initialize navigation hook\r\n\r\n\r\n    const handleChange = (prop) => (event) => {\r\n        setValues({ ...values, [prop]: event.target.value });\r\n    };\r\n\r\n    const handleClickShowPassword = () => {\r\n        setValues({ ...values, showPassword: !values.showPassword });\r\n    };\r\n\r\n    const handleSubmit = (event) => {\r\n        event.preventDefault();\r\n        console.log('Login attempted:', { username: values.username, password: values.password });\r\n    };\r\n\r\n    return (\r\n        <Box\r\n            sx={{\r\n                minHeight: '100vh',\r\n                width: '100%',\r\n                display: 'flex',\r\n                justifyContent: 'center',\r\n                alignItems: 'center',\r\n                bgcolor: '#f5f5f5',\r\n            }}\r\n        >\r\n            <Container maxWidth=\"md\" sx={{ py: 4 }}>\r\n                <LoginCard>\r\n                    <ImageSection>\r\n                        <VideoBackground autoPlay loop muted playsInline>\r\n                            <source src=\"../../public/images_client/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4\" type=\"video/mp4\" />\r\n                            Your browser does not support the video tag.\r\n                        </VideoBackground>\r\n                        <ContentOverlay>\r\n                            <Typography\r\n                                variant=\"h4\"\r\n                                component=\"h1\"\r\n                                sx={{\r\n                                    fontWeight: 'bold',\r\n                                    mb: 2,\r\n                                    textAlign: 'center',\r\n                                }}\r\n                            >\r\n                                Rent with ease\r\n                                <br />\r\n                                your desired Cars\r\n                            </Typography>\r\n                            <Typography\r\n                                variant=\"h6\"\r\n                                sx={{\r\n                                    mb: 4,\r\n                                    textAlign: 'center',\r\n                                }}\r\n                            >\r\n                                Fly with wheals\r\n                            </Typography>\r\n                            <Box sx={{ position: 'absolute',display: 'flex', alignItems: 'center', gap: 2 ,bottom: 16,}}>\r\n                                <Typography variant=\"body1\" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>\r\n                                    Don't have an account?\r\n                                </Typography>\r\n                                <SignUpButton\r\n                                    variant=\"contained\"\r\n                                    disableElevation\r\n                                    onClick={() => navigate('/registration')} // Navigate to registration page\r\n                                >\r\n                                    Sign Up\r\n                                </SignUpButton>\r\n                            </Box>\r\n                        </ContentOverlay>\r\n                    </ImageSection>\r\n\r\n                    <FormSection component=\"form\" onSubmit={handleSubmit}>\r\n                        <img\r\n                            src=\"../../public/images_client/3-removebg-preview.png\"\r\n                            alt=\"EASERENT Logo\"\r\n                            style={{\r\n                                height: \"70px\",\r\n                                objectFit: \"contain\",\r\n                                marginBottom: \"10px\"\r\n                            }}\r\n                        />\r\n                        <Typography variant=\"h6\" component=\"h2\" sx={{ mb: 4,textAlign: 'center', marginBottom: \"90px\"}}>\r\n                            Welcome Back!\r\n                        </Typography>\r\n\r\n                        <Grid container spacing={3}>\r\n                            {/* Username Field */}\r\n                            <Grid item xs={12}>\r\n                                <TextField\r\n                                    fullWidth\r\n                                    label=\"Username\"\r\n                                    variant=\"outlined\"\r\n                                    value={values.username}\r\n                                    onChange={handleChange('username')}\r\n                                    InputProps={{\r\n                                        startAdornment: (\r\n                                            <InputAdornment position=\"start\">\r\n                                                <PersonIcon />\r\n                                            </InputAdornment>\r\n                                        ),\r\n                                        endAdornment: ( // Adding a dummy endAdornment for symmetry if needed\r\n                                            <InputAdornment position=\"end\">\r\n                                                <Box sx={{ width: 24 }} /> {/* Placeholder for spacing */}\r\n                                            </InputAdornment>\r\n                                        ),\r\n                                    }}\r\n                                />\r\n                            </Grid>\r\n\r\n                            {/* Password Field */}\r\n                            <Grid item xs={12}>\r\n                                <TextField\r\n                                    fullWidth\r\n                                    label=\"Password\"\r\n                                    variant=\"outlined\"\r\n                                    type={values.showPassword ? 'text' : 'password'}\r\n                                    value={values.password}\r\n                                    onChange={handleChange('password')}\r\n                                    InputProps={{\r\n                                        startAdornment: (\r\n                                            <InputAdornment position=\"start\">\r\n                                                <Box sx={{ width: 24 }} /> {/* Placeholder for symmetry */}\r\n                                            </InputAdornment>\r\n                                        ),\r\n                                        endAdornment: (\r\n                                            <InputAdornment position=\"end\">\r\n                                                <IconButton onClick={handleClickShowPassword} edge=\"end\">\r\n                                                    {values.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}\r\n                                                </IconButton>\r\n                                            </InputAdornment>\r\n                                        ),\r\n                                    }}\r\n                                />\r\n                            </Grid>\r\n\r\n                        <Grid item xs={12}>\r\n                                <Button\r\n                                    fullWidth\r\n                                    size=\"large\"\r\n                                    type=\"submit\"\r\n                                    variant=\"contained\"\r\n                                    color=\"primary\"\r\n                                    sx={{ mt: 2 }}\r\n                                >\r\n                                    Login\r\n                                </Button>\r\n                            </Grid>\r\n                            <Grid item xs={12} textAlign=\"center\">\r\n                                <Link href=\"#\" underline=\"hover\" color=\"textSecondary\">\r\n                                    Forgot your password? Click Here\r\n                                </Link>\r\n                            </Grid>\r\n                        </Grid>\r\n                    </FormSection>\r\n                </LoginCard>\r\n            </Container>\r\n        </Box>\r\n    );\r\n};\r\n\r\nexport default Login;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Frontend/frontend/src/Login/index.jsx b/Frontend/frontend/src/Login/index.jsx
+--- a/Frontend/frontend/src/Login/index.jsx	(revision 32206e0bb92620371973fb31eff9ef255d31edd9)
++++ b/Frontend/frontend/src/Login/index.jsx	(date 1735085752741)
+@@ -1,23 +1,8 @@
+ import React, { useState } from 'react';
+-import {
+-    Box,
+-    Button,
+-    Card,
+-    Container,
+-    Grid,
+-    IconButton,
+-    InputAdornment,
+-    Link,
+-    TextField,
+-    Typography,
+-    styled,
+-} from '@mui/material';
+-import {
+-    Person as PersonIcon,
+-    Visibility as VisibilityIcon,
+-    VisibilityOff as VisibilityOffIcon,
+-} from '@mui/icons-material';
++import { Box, Button, Card, Container, Grid, IconButton, InputAdornment, Link, TextField, Typography, styled } from '@mui/material';
++import { Person as PersonIcon, Visibility as VisibilityIcon, VisibilityOff as VisibilityOffIcon } from '@mui/icons-material';
+ import { useNavigate } from 'react-router-dom';
++import { useTheme } from '@mui/material/styles';  // Import useTheme
+ 
+ const LoginCard = styled(Card)(({ theme }) => ({
+     maxWidth: '100%',
+@@ -42,6 +27,10 @@
+     textAlign: 'center',
+     padding: theme.spacing(4),
+     overflow: 'hidden',
++    [theme.breakpoints.down('md')]: {
++        minHeight: 300, // Adjust height on smaller screens
++        minWidth: '100%', // Full width on smaller screens
++    },
+ }));
+ 
+ const VideoBackground = styled('video')({
+@@ -64,6 +53,11 @@
+     display: 'flex',
+     flexDirection: 'column',
+     justifyContent: 'center',
++    backgroundColor: 'white',
++    color: '#000',
++    [theme.breakpoints.down('md')]: {
++        padding: theme.spacing(2), // Adjust padding for smaller screens
++    },
+ }));
+ 
+ const ContentOverlay = styled(Box)({
+@@ -81,7 +75,6 @@
+     padding: '2rem',
+ });
+ 
+-// New styled component for the sign up button
+ const SignUpButton = styled(Button)(({ theme }) => ({
+     backgroundColor: 'rgba(255, 255, 255, 0.9)',
+     color: '#000',
+@@ -100,8 +93,8 @@
+         password: '',
+         showPassword: false,
+     });
+-    const navigate = useNavigate(); // Initialize navigation hook
+-
++    const navigate = useNavigate();
++    const theme = useTheme(); // Use the theme hook here
+ 
+     const handleChange = (prop) => (event) => {
+         setValues({ ...values, [prop]: event.target.value });
+@@ -111,9 +104,21 @@
+         setValues({ ...values, showPassword: !values.showPassword });
+     };
+ 
+-    const handleSubmit = (event) => {
++    const handleSubmit = async (event) => {
+         event.preventDefault();
+-        console.log('Login attempted:', { username: values.username, password: values.password });
++        try {
++            const response = await UserService.login(values.username, values.password);
++            const role = response.role; // Supposons que le rôle est retourné dans la réponse
++
++            if (role === 'ADMIN') {
++                navigate('/admin'); // Redirige vers l'espace admin
++            } else if (role === 'USER') {
++                navigate('/'); // Redirige vers l'espace client
++            }
++        } catch (error) {
++            console.error('Login failed:', error);
++            // Vous pouvez ajouter une gestion d'erreur ici, comme un message d'alerte.
++        }
+     };
+ 
+     return (
+@@ -124,14 +129,15 @@
+                 display: 'flex',
+                 justifyContent: 'center',
+                 alignItems: 'center',
+-                bgcolor: '#f5f5f5',
++                bgcolor: '#ffffff',
++                color: '#000',
+             }}
+         >
+             <Container maxWidth="md" sx={{ py: 4 }}>
+                 <LoginCard>
+                     <ImageSection>
+                         <VideoBackground autoPlay loop muted playsInline>
+-                            <source src="../../public/images_client/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4" type="video/mp4" />
++                            <source src="/images_client/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4" type="video/mp4" />
+                             Your browser does not support the video tag.
+                         </VideoBackground>
+                         <ContentOverlay>
+@@ -142,6 +148,9 @@
+                                     fontWeight: 'bold',
+                                     mb: 2,
+                                     textAlign: 'center',
++                                    [theme.breakpoints.down('sm')]: {
++                                        fontSize: '2rem', // Adjust font size on smaller screens
++                                    },
+                                 }}
+                             >
+                                 Rent with ease
+@@ -153,19 +162,18 @@
+                                 sx={{
+                                     mb: 4,
+                                     textAlign: 'center',
++                                    [theme.breakpoints.down('sm')]: {
++                                        fontSize: '1rem', // Adjust font size on smaller screens
++                                    },
+                                 }}
+                             >
+-                                Fly with wheals
++                                Fly with wheels
+                             </Typography>
+-                            <Box sx={{ position: 'absolute',display: 'flex', alignItems: 'center', gap: 2 ,bottom: 16,}}>
++                            <Box sx={{ position: 'absolute', display: 'flex', alignItems: 'center', gap: 2, bottom: 16 }}>
+                                 <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                                     Don't have an account?
+                                 </Typography>
+-                                <SignUpButton
+-                                    variant="contained"
+-                                    disableElevation
+-                                    onClick={() => navigate('/registration')} // Navigate to registration page
+-                                >
++                                <SignUpButton variant="contained" disableElevation onClick={() => navigate('/registration')}>
+                                     Sign Up
+                                 </SignUpButton>
+                             </Box>
+@@ -174,15 +182,15 @@
+ 
+                     <FormSection component="form" onSubmit={handleSubmit}>
+                         <img
+-                            src="../../public/images_client/3-removebg-preview.png"
++                            src="/images_client/3-removebg-preview.png"
+                             alt="EASERENT Logo"
+                             style={{
+-                                height: "70px",
+-                                objectFit: "contain",
+-                                marginBottom: "10px"
++                                height: '70px',
++                                objectFit: 'contain',
++                                marginBottom: '10px',
+                             }}
+                         />
+-                        <Typography variant="h6" component="h2" sx={{ mb: 4,textAlign: 'center', marginBottom: "90px"}}>
++                        <Typography variant="h6" component="h2" sx={{ mb: 4, textAlign: 'center', marginBottom: '90px' }}>
+                             Welcome Back!
+                         </Typography>
+ 
+@@ -198,14 +206,26 @@
+                                     InputProps={{
+                                         startAdornment: (
+                                             <InputAdornment position="start">
+-                                                <PersonIcon />
++                                                <PersonIcon sx={{ color: 'black' }} />
+                                             </InputAdornment>
+                                         ),
+-                                        endAdornment: ( // Adding a dummy endAdornment for symmetry if needed
+-                                            <InputAdornment position="end">
+-                                                <Box sx={{ width: 24 }} /> {/* Placeholder for spacing */}
+-                                            </InputAdornment>
+-                                        ),
++                                    }}
++                                    sx={{
++                                        color: 'black',
++                                        '& .MuiOutlinedInput-root': {
++                                            '& fieldset': {
++                                                borderColor: 'black',
++                                            },
++                                            '&:hover fieldset': {
++                                                borderColor: 'black',
++                                            },
++                                            '&.Mui-focused fieldset': {
++                                                borderColor: 'black',
++                                            },
++                                        },
++                                        '& .MuiInputLabel-root': {
++                                            color: 'black',
++                                        },
+                                     }}
+                                 />
+                             </Grid>
+@@ -222,34 +242,45 @@
+                                     InputProps={{
+                                         startAdornment: (
+                                             <InputAdornment position="start">
+-                                                <Box sx={{ width: 24 }} /> {/* Placeholder for symmetry */}
++                                                <Box sx={{ width: 24 }} />
+                                             </InputAdornment>
+                                         ),
+                                         endAdornment: (
+                                             <InputAdornment position="end">
+                                                 <IconButton onClick={handleClickShowPassword} edge="end">
+-                                                    {values.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
++                                                    {values.showPassword ? <VisibilityOffIcon sx={{ color: 'black' }} /> : <VisibilityIcon sx={{ color: 'black' }} />}
+                                                 </IconButton>
+                                             </InputAdornment>
+                                         ),
+                                     }}
++                                    sx={{
++                                        color: 'black',
++                                        '& .MuiOutlinedInput-root': {
++                                            '& fieldset': {
++                                                borderColor: 'black',
++                                            },
++                                            '&:hover fieldset': {
++                                                borderColor: 'black',
++                                            },
++                                            '&.Mui-focused fieldset': {
++                                                borderColor: 'black',
++                                            },
++                                        },
++                                        '& .MuiInputLabel-root': {
++                                            color: 'black',
++                                        },
++                                    }}
+                                 />
+                             </Grid>
+ 
+-                        <Grid item xs={12}>
+-                                <Button
+-                                    fullWidth
+-                                    size="large"
+-                                    type="submit"
+-                                    variant="contained"
+-                                    color="primary"
+-                                    sx={{ mt: 2 }}
+-                                >
++                            <Grid item xs={12}>
++                                <Button fullWidth size="large" type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+                                     Login
+                                 </Button>
+                             </Grid>
++
+                             <Grid item xs={12} textAlign="center">
+-                                <Link href="#" underline="hover" color="textSecondary">
++                                <Link href="#" underline="hover" color="black">
+                                     Forgot your password? Click Here
+                                 </Link>
+                             </Grid>
+Index: Frontend/frontend/src/App.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useState } from 'react';\r\nimport { ThemeProvider, createTheme } from '@mui/material';\r\nimport { Route, Routes, useLocation } from \"react-router-dom\";\r\nimport Login from './Login';\r\nimport Registration from './Registration';\r\nimport Home from './pages_client/Home.jsx';\r\nimport HeaderC from \"./components_client/global/Header/Header\";\r\nimport FooterC from \"./components_client/global/Footer/Footer\";\r\nimport { ColorModeContext, useMode } from \"./theme.js\";\r\nimport { CssBaseline } from \"@mui/material\";\r\nimport Topbar from \"../src/pages_admin/global/topbar\";\r\nimport Sidebar from \"../src/pages_admin/global/sidebar\";\r\nimport Dashboard from \"./pages_admin/dashboard\";\r\nimport Users from \"../src/pages_admin/Users\";\r\nimport Vehicles from \"../src/pages_admin/Vehicles\";\r\n\r\nconst theme = createTheme();\r\n\r\nfunction AppLayout({ children }) {\r\n    const location = useLocation();\r\n    const noHeaderFooterRoutes = ['/login', '/registration'];\r\n\r\n    return (\r\n        <>\r\n            {!noHeaderFooterRoutes.includes(location.pathname) && <HeaderC />}\r\n            {children}\r\n            {!noHeaderFooterRoutes.includes(location.pathname) && <FooterC />}\r\n        </>\r\n    );\r\n}\r\n\r\nfunction App() {\r\n    const [theme, colorMode] = useMode();\r\n    const [isSidebar, setIsSidebar] = useState(true);\r\n\r\n    return (\r\n        <ColorModeContext.Provider value={colorMode}>\r\n            <ThemeProvider theme={theme}>\r\n                <CssBaseline />\r\n                <Routes>\r\n                    {/* Routes without Header/Footer */}\r\n                    <Route path=\"/login\" element={<Login />} />\r\n                    <Route path=\"/registration\" element={<Registration />} />\r\n\r\n                    {/* Client Routes */}\r\n                    <Route\r\n                        path=\"/\"\r\n                        element={\r\n                            <AppLayout>\r\n                                <Home />\r\n                            </AppLayout>\r\n                        }\r\n                    />\r\n\r\n                    {/* Admin Routes */}\r\n                    <Route\r\n                        path=\"/admin/*\"\r\n                        element={\r\n                            <div className=\"app\">\r\n                                <Sidebar isSidebar={isSidebar} />\r\n                                <main className=\"content\">\r\n                                    <Topbar setIsSidebar={setIsSidebar} />\r\n                                    <Routes>\r\n                                        <Route path=\"\" element={<Dashboard />} />\r\n                                        <Route path=\"users\" element={<Users />} />\r\n                                        <Route path=\"vehicles\" element={<Vehicles />} />\r\n                                    </Routes>\r\n                                </main>\r\n                            </div>\r\n                        }\r\n                    />\r\n                </Routes>\r\n            </ThemeProvider>\r\n        </ColorModeContext.Provider>\r\n    );\r\n}\r\n\r\nexport default App;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Frontend/frontend/src/App.jsx b/Frontend/frontend/src/App.jsx
+--- a/Frontend/frontend/src/App.jsx	(revision 32206e0bb92620371973fb31eff9ef255d31edd9)
++++ b/Frontend/frontend/src/App.jsx	(date 1735085049456)
+@@ -1,18 +1,27 @@
+ import React, { useState } from 'react';
++import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+ import { ThemeProvider, createTheme } from '@mui/material';
+-import { Route, Routes, useLocation } from "react-router-dom";
+-import Login from './Login';
+-import Registration from './Registration';
+-import Home from './pages_client/Home.jsx';
+-import HeaderC from "./components_client/global/Header/Header";
+-import FooterC from "./components_client/global/Footer/Footer";
+ import { ColorModeContext, useMode } from "./theme.js";
+ import { CssBaseline } from "@mui/material";
++
++// Importation des composants de l'application
++import Navbar from './components_client/global/Header/Header.jsx';
++import FooterComponent from './components_client/global/Footer/Footer.jsx';
++import LoginPage from './Login';
++import RegistrationPage from './Registration';
++
++// Pages clients
++import Home from './pages_client/Home.jsx';
++
++// Pages administrateur
+ import Topbar from "../src/pages_admin/global/topbar";
+ import Sidebar from "../src/pages_admin/global/sidebar";
+ import Dashboard from "./pages_admin/dashboard";
+ import Users from "../src/pages_admin/Users";
+-import Vehicles from "../src/pages_admin/Vehicles";
++import Vehicles from "./pages_admin/Vehicles";
++
++// Service utilisateur pour vérifier l'authentification et les rôles
++import UserService from './service/UserService.js';
+ 
+ const theme = createTheme();
+ 
+@@ -22,9 +31,9 @@
+ 
+     return (
+         <>
+-            {!noHeaderFooterRoutes.includes(location.pathname) && <HeaderC />}
++            {!noHeaderFooterRoutes.includes(location.pathname) && <Navbar />}
+             {children}
+-            {!noHeaderFooterRoutes.includes(location.pathname) && <FooterC />}
++            {!noHeaderFooterRoutes.includes(location.pathname) && <FooterComponent />}
+         </>
+     );
+ }
+@@ -37,12 +46,13 @@
+         <ColorModeContext.Provider value={colorMode}>
+             <ThemeProvider theme={theme}>
+                 <CssBaseline />
++                {/* Le BrowserRouter doit être ici, au niveau de l'app */}
+                 <Routes>
+-                    {/* Routes without Header/Footer */}
+-                    <Route path="/login" element={<Login />} />
+-                    <Route path="/registration" element={<Registration />} />
++                    {/* Routes publiques */}
++                    <Route path="/login" element={<LoginPage />} />
++                    <Route path="/registration" element={<RegistrationPage />} />
+ 
+-                    {/* Client Routes */}
++                    {/* Routes client */}
+                     <Route
+                         path="/"
+                         element={
+@@ -52,27 +62,44 @@
+                         }
+                     />
+ 
+-                    {/* Admin Routes */}
+-                    <Route
+-                        path="/admin/*"
+-                        element={
+-                            <div className="app">
+-                                <Sidebar isSidebar={isSidebar} />
+-                                <main className="content">
+-                                    <Topbar setIsSidebar={setIsSidebar} />
+-                                    <Routes>
+-                                        <Route path="" element={<Dashboard />} />
+-                                        <Route path="users" element={<Users />} />
+-                                        <Route path="vehicles" element={<Vehicles />} />
+-                                    </Routes>
+-                                </main>
+-                            </div>
+-                        }
+-                    />
++                    {/* Routes administrateur */}
++                    {UserService.adminOnly() && (
++                        <Route
++                            path="/admin/*"
++                            element={
++                                <div className="app">
++                                    <Sidebar isSidebar={isSidebar} />
++                                    <main className="content">
++                                        <Topbar setIsSidebar={setIsSidebar} />
++                                        <Routes>
++                                            <Route path="" element={<Dashboard />} />
++                                            <Route path="users" element={<Users />} />
++                                            <Route path="vehicles" element={<Vehicles />} />
++                                        </Routes>
++                                    </main>
++                                </div>
++                            }
++                        />
++                    )}
++
++                    {/* Routes utilisateurs authentifiés */}
++                    {UserService.isAuthenticated() && (
++                        <Route
++                            path="/profile"
++                            element={
++                                <AppLayout>
++                                    {/* <ProfilePage /> */}
++                                </AppLayout>
++                            }
++                        />
++                    )}
++
++                    {/* Redirection si aucune route ne correspond */}
++                    <Route path="*" element={<Navigate to="/login" />} />
+                 </Routes>
+             </ThemeProvider>
+         </ColorModeContext.Provider>
+     );
+ }
+ 
+-export default App;
+\ No newline at end of file
++export default App;
+Index: Frontend/frontend/src/service/UserService.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Frontend/frontend/src/service/UserService.js b/Frontend/frontend/src/service/UserService.js
+new file mode 100644
+--- /dev/null	(date 1735082247809)
++++ b/Frontend/frontend/src/service/UserService.js	(date 1735082247809)
+@@ -0,0 +1,117 @@
++import axios from "axios";
++
++class UserService{
++    static BASE_URL = "http://localhost:8082/api/account"
++
++    static async login(email, password){
++        try{
++            const response = await axios.post(`${UserService.BASE_URL}/auth/login`, {email, password})
++            return response.data;
++
++        }catch(err){
++            throw err;
++        }
++    }
++
++    static async register(userData, token){
++        try{
++            const response = await axios.post(`${UserService.BASE_URL}/auth/register`, userData,
++                {
++                    headers: {Authorization: `Bearer ${token}`}
++                })
++            return response.data;
++        }catch(err){
++            throw err;
++        }
++    }
++
++    static async getAllUsers(token){
++        try{
++            const response = await axios.get(`${UserService.BASE_URL}/admin/get-all-users`,
++                {
++                    headers: {Authorization: `Bearer ${token}`}
++                })
++            return response.data;
++        }catch(err){
++            throw err;
++        }
++    }
++
++
++    static async getYourProfile(token){
++        try{
++            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`,
++                {
++                    headers: {Authorization: `Bearer ${token}`}
++                })
++            return response.data;
++        }catch(err){
++            throw err;
++        }
++    }
++
++    static async getUserById(userId, token){
++        try{
++            const response = await axios.get(`${UserService.BASE_URL}/admin/get-users/${userId}`,
++                {
++                    headers: {Authorization: `Bearer ${token}`}
++                })
++            return response.data;
++        }catch(err){
++            throw err;
++        }
++    }
++
++    static async deleteUser(userId, token){
++        try{
++            const response = await axios.delete(`${UserService.BASE_URL}/admin/delete/${userId}`,
++                {
++                    headers: {Authorization: `Bearer ${token}`}
++                })
++            return response.data;
++        }catch(err){
++            throw err;
++        }
++    }
++
++
++    static async updateUser(userId, userData, token){
++        try{
++            const response = await axios.put(`${UserService.BASE_URL}/admin/update/${userId}`, userData,
++                {
++                    headers: {Authorization: `Bearer ${token}`}
++                })
++            return response.data;
++        }catch(err){
++            throw err;
++        }
++    }
++
++    /**AUTHENTICATION CHECKER */
++    static logout(){
++        localStorage.removeItem('token')
++        localStorage.removeItem('role')
++    }
++
++    static isAuthenticated(){
++        const token = localStorage.getItem('token')
++        return !!token
++    }
++
++    static isAdmin(){
++        const role = localStorage.getItem('role')
++        return role === 'ADMIN'
++    }
++
++    static isUser(){
++        const role = localStorage.getItem('role')
++        return role === 'USER'
++    }
++
++    static adminOnly(){
++        return this.isAuthenticated() && this.isAdmin();
++    }
++
++}
++
++export default UserService;
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"30f41e69-a102-4757-8de5-973b010c2259\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/Frontend/frontend/src/App.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Frontend/frontend/src/App.jsx\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Merge.Settings\">\r\n    <option name=\"BRANCH\" value=\"main\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2q26pB786Y636GCvRkI9B44Seq8\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;Spring Boot.CarRentelSystemBackendApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,\r\n    &quot;spring.configuration.checksum&quot;: &quot;d2f1b336f637db1395f0202fe4700473&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ReactDesignerToolWindowState\">\r\n    <option name=\"myId2Visible\">\r\n      <map>\r\n        <entry key=\"com.haulmont.rcb.reactComponents\" value=\"false\" />\r\n        <entry key=\"com.haulmont.rcb.reactInspector\" value=\"true\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"CarRentelSystemBackendApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"car-rentel-system-backend\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.example.carrentelsystembackend.CarRentelSystemBackendApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"30f41e69-a102-4757-8de5-973b010c2259\" name=\"Changes\" comment=\"\" />\r\n      <created>1733848505734</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1733848505734</updated>\r\n      <workItem from=\"1733848510745\" duration=\"18000\" />\r\n      <workItem from=\"1733848843398\" duration=\"1403000\" />\r\n      <workItem from=\"1733850375850\" duration=\"132000\" />\r\n      <workItem from=\"1733850596464\" duration=\"42000\" />\r\n      <workItem from=\"1733853763123\" duration=\"1768000\" />\r\n      <workItem from=\"1734903474771\" duration=\"152000\" />\r\n      <workItem from=\"1734903951657\" duration=\"21975000\" />\r\n      <workItem from=\"1735052078339\" duration=\"2924000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Add Backend\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733848896525</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733848896525</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Add Backend\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733849250055</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733849250055</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Add\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733850417025</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733850417025</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Add\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733854730243</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733854730243</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Add\">\r\n      <created>1734903505938</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734903505938</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Add\">\r\n      <created>1734904010587</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734904010587</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"implementing User Management\">\r\n      <created>1734931367857</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734931367857</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"implementing User Management\">\r\n      <created>1735070716531</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1735070716531</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"farah\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Add Backend\" />\r\n    <MESSAGE value=\"Add\" />\r\n    <MESSAGE value=\"implementing User Management\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"implementing User Management\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 32206e0bb92620371973fb31eff9ef255d31edd9)
++++ b/.idea/workspace.xml	(date 1735083624985)
+@@ -4,8 +4,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="">
++    <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="implementing User Management">
++      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/service/UserService.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/Login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/Login/index.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users/index.jsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -15,8 +19,8 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="Class" />
+         <option value="JavaScript File" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>

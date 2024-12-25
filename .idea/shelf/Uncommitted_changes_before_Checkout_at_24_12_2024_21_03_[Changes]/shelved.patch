@@ -1,0 +1,144 @@
+Index: Frontend/frontend/src/App.jsx
+===================================================================
+diff --git a/Frontend/frontend/src/App.jsx b/Frontend/frontend/src/App.jsx
+--- a/Frontend/frontend/src/App.jsx	
++++ b/Frontend/frontend/src/App.jsx	
+@@ -1,4 +1,4 @@
+-import React from 'react';
++import React, { useState } from 'react';
+ import { ThemeProvider, createTheme } from '@mui/material';
+ import { Route, Routes, useLocation } from "react-router-dom";
+ import Login from './Login';
+@@ -6,23 +6,15 @@
+ import Home from './pages_client/Home.jsx';
+ import HeaderC from "./components_client/global/Header/Header";
+ import FooterC from "./components_client/global/Footer/Footer";
+-import { useState } from "react";
+-import { ColorModeContext,useMode } from "./theme.js";
+-import { CssBaseline} from "@mui/material";
++import { ColorModeContext, useMode } from "./theme.js";
++import { CssBaseline } from "@mui/material";
+ import Topbar from "../src/pages_admin/global/topbar";
+ import Sidebar from "../src/pages_admin/global/sidebar";
+ import Dashboard from "./pages_admin/dashboard";
+ import Users from "../src/pages_admin/Users";
+ import Vehicles from "../src/pages_admin/Vehicles";
+ 
+-// import Booking from "./scenes/Booking";
+-// import Payment from "./scenes/Payment";
+-// import Notifications from "./scenes/Notifications";
+-// import Calendar from "./scenes/Calendar";
+-// import Settings from "./scenes/Settings";
+-const theme = createTheme({
+-    // You can customize your theme here
+-});
++const theme = createTheme();
+ 
+ function AppLayout({ children }) {
+     const location = useLocation();
+@@ -38,28 +30,28 @@
+ }
+ 
+ function App() {
+-    const [theme,colorMode]=useMode();
++    const [theme, colorMode] = useMode();
+     const [isSidebar, setIsSidebar] = useState(true);
+ 
+-
+     return (
+         <ColorModeContext.Provider value={colorMode}>
+             <ThemeProvider theme={theme}>
+                 <CssBaseline />
+                 <Routes>
++                    {/* Routes without Header/Footer */}
++                    <Route path="/login" element={<Login />} />
++                    <Route path="/registration" element={<Registration />} />
++
+                     {/* Client Routes */}
+                     <Route
+                         path="/"
+                         element={
+                             <AppLayout>
+-                                <Routes>
+-                                    <Route path="/" element={<Home />} />
+-                                    <Route path="/login" element={<Login />} />
+-                                    <Route path="/registration" element={<Registration />} />
+-                                </Routes>
++                                <Home />
+                             </AppLayout>
+                         }
+                     />
++
+                     {/* Admin Routes */}
+                     <Route
+                         path="/admin/*"
+Index: .idea/dataSources.local.xml
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	
++++ b/.idea/dataSources.local.xml	
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-243.21565.193">
++  <component name="dataSourceStorageLocal" created-in="IU-222.4554.10">
+     <data-source name="RentalCar@localhost" uuid="d7b37dba-3c63-4a63-88f6-a274425f7575">
+       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+       <user-name>root</user-name>
+Index: Frontend/frontend/src/pages_admin/Users/index.jsx
+===================================================================
+diff --git a/Frontend/frontend/src/pages_admin/Users/index.jsx b/Frontend/frontend/src/pages_admin/Users/index.jsx
+--- a/Frontend/frontend/src/pages_admin/Users/index.jsx	
++++ b/Frontend/frontend/src/pages_admin/Users/index.jsx	
+@@ -1,7 +1,6 @@
+ import { Box, Typography, useTheme } from "@mui/material";
+ import { DataGrid } from "@mui/x-data-grid";
+ import { tokens } from "../../theme.js";
+-import { mockDataTeam } from "../../../../frontend_car_admin/src/data/mockData.js";
+ import Header from "../../components_admin/Header.jsx";
+ 
+ const Team = () => {
+@@ -66,7 +65,7 @@
+           },
+         }}
+       >
+-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
++        <DataGrid />
+       </Box>
+     </Box>
+   );
+Index: Frontend/frontend/package.json
+===================================================================
+diff --git a/Frontend/frontend/package.json b/Frontend/frontend/package.json
+--- a/Frontend/frontend/package.json	
++++ b/Frontend/frontend/package.json	
+@@ -35,6 +35,6 @@
+     "eslint-plugin-react-hooks": "^5.0.0",
+     "eslint-plugin-react-refresh": "^0.4.16",
+     "globals": "^15.13.0",
+-    "vite": "^6.0.3"
++    "vite": "^6.0.5"
+   }
+ }
+Index: Frontend/frontend/package-lock.json
+===================================================================
+diff --git a/Frontend/frontend/package-lock.json b/Frontend/frontend/package-lock.json
+--- a/Frontend/frontend/package-lock.json	
++++ b/Frontend/frontend/package-lock.json	
+@@ -33,7 +33,7 @@
+         "eslint-plugin-react-hooks": "^5.0.0",
+         "eslint-plugin-react-refresh": "^0.4.16",
+         "globals": "^15.13.0",
+-        "vite": "^6.0.3"
++        "vite": "^6.0.5"
+       }
+     },
+     "node_modules/@ampproject/remapping": {
+@@ -5368,7 +5368,6 @@
+       "resolved": "https://registry.npmjs.org/vite/-/vite-6.0.5.tgz",
+       "integrity": "sha512-akD5IAH/ID5imgue2DYhzsEwCi0/4VKY31uhMLEYJwPP4TiUp8pL5PIK+Wo7H8qT8JY9i+pVfPydcFPYD1EL7g==",
+       "dev": true,
+-      "license": "MIT",
+       "dependencies": {
+         "esbuild": "0.24.0",
+         "postcss": "^8.4.49",
