@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import 'react-pro-sidebar/dist/css/styles.css';
 import { Box, Typography, useTheme } from "@mui/material";
@@ -13,29 +13,43 @@ import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-const Item = ({ title, to, icon, selected, setSelected, color }) => {
+import { useNavigate } from "react-router-dom";
+
+const Item = ({ title, to, icon, selected, setSelected, color, onClick }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+
+    const isActive = selected === title; // Check if the item is active
+
     return (
         <MenuItem
-            active={selected === title}
-            style={{
-                color: selected === title ? colors.grey[100] : color,
+            onClick={() => {
+                setSelected(title);
+                if (onClick) onClick();
             }}
-            onClick={() => setSelected(title)}
-            icon={icon}
+            icon={React.cloneElement(icon, { style: { color: isActive ? colors.greenAccent[500] : 'white' } })} // Icon color changes when active
+            style={{
+                color: 'white', // Always white for title text
+                backgroundColor: isActive ? colors.greenAccent[300] : 'transparent', // Optional: background color change when active
+                borderLeft: isActive ? `4px solid ${colors.greenAccent[500]}` : 'none',
+                borderRadius: '50px',
+                padding: '5px 10px', // Adjust padding
+                fontWeight: 'bold', // Optional: add bold text style
+            }}
         >
-            <Typography>{title}</Typography>
+            <Typography style={{ color: 'white' }}>{title}</Typography> {/* Title text color is explicitly white */}
             <Link to={to} />
         </MenuItem>
     );
 };
 
+
+
 const Sidebar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [selected, setSelected] = useState("Dashboard");
-
+    const navigate = useNavigate();
     const sidebarColors = {
         backgroundImage: `url('/images_admin/926660d7278d417ef012516f7c877087.jpg')`,
         backgroundSize: "100%",
@@ -45,7 +59,10 @@ const Sidebar = () => {
         activeColor: "#6870fa",
         hoverColor: "#868dfb",
     };
-
+    const handleLogout = () => {
+        localStorage.removeItem("authToken");
+        navigate("/login");
+    };
     return (
         <Box
             sx={{
@@ -183,11 +200,11 @@ const Sidebar = () => {
                         />
                         <Item
                             title="Logout"
-                            to="/logout"
                             icon={<LogoutOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                             color="#FFFFFF"
+                            onClick={handleLogout}
                         />
                     </Box>
                 </Menu>

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import { Link } from 'react-router-dom';
 import {
     Box,
     Button,
@@ -7,8 +9,6 @@ import {
     Grid,
     IconButton,
     InputAdornment,
-    Link,
-    TextField,
     Typography,
     styled,
 } from '@mui/material';
@@ -20,13 +20,50 @@ import {
     Home as HomeIcon,
     Phone as PhoneIcon,
 } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+const SignUpButton = styled(Button)(({ theme }) => ({
+    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Same as your .banner-btn.see-all background color
+    color: 'white',
+    border: '1px solid rgba(255, 255, 255, 255)', // Border color similar to the original style
+    borderRadius: '20px',
+    padding: '8px 24px',
+    textTransform: 'none',
+    fontWeight: 500,
+    '&:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.7)', // Same as hover effect for the .banner-btn.see-all
+        borderColor: 'rgba(255, 255, 255, 255)', // Border color on hover
+    },
+}));
 
-// Keeping all the styled components the same
+
+// Create a theme with custom styles for TextField
+const theme = createTheme({
+
+    components: {
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    '& .MuiInputBase-root': {
+                        color: 'black', // Text color
+                    },
+                    '& .MuiInputLabel-root': {
+                        color: 'black', // Label color
+                    },
+                    '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'black', // Border color
+                    },
+                },
+            },
+        },
+    },
+});
+// Styled components
 const LoginCard = styled(Card)(({ theme }) => ({
     maxWidth: 1000,
     margin: 'auto',
     overflow: 'hidden',
     display: 'flex',
+    backgroundColor: '#ffffff',  // Adjusted background color for consistency with login
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
     },
@@ -84,19 +121,9 @@ const ContentOverlay = styled(Box)({
     padding: '2rem',
 });
 
-const SignUpButton = styled(Button)(({ theme }) => ({
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    color: '#000',
-    borderRadius: '20px',
-    padding: '8px 24px',
-    textTransform: 'none',
-    fontWeight: 500,
-    '&:hover': {
-        backgroundColor: 'rgba(255, 255, 255, 1)',
-    },
-}));
 
-const Login = () => {
+
+const Register = () => {
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
@@ -126,6 +153,7 @@ const Login = () => {
     };
 
     return (
+        <ThemeProvider theme={theme}>
         <Box
             sx={{
                 minHeight: '100vh',
@@ -140,7 +168,7 @@ const Login = () => {
                 <LoginCard>
                     <ImageSection>
                         <VideoBackground autoPlay loop muted playsInline>
-                            <source src="../../public/images_client/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4" type="video/mp4" />
+                            <source src="/images_client/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </VideoBackground>
                         <ContentOverlay>
@@ -164,30 +192,31 @@ const Login = () => {
                                     textAlign: 'center',
                                 }}
                             >
-                                Fly with wheals
+                                Fly with wheels
                             </Typography>
                             <Box sx={{ position: 'absolute', display: 'flex', alignItems: 'center', gap: 2, bottom: 16 }}>
                                 <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                                     Already have an account?
                                 </Typography>
-                                <SignUpButton variant="contained" disableElevation>
-                                    Sign In
-                                </SignUpButton>
+                                <Link to="/login" style={{ textDecoration: 'none' }}>
+                                    <SignUpButton variant="contained" disableElevation>
+                                        Sign In
+                                    </SignUpButton>
+                                </Link>
                             </Box>
                         </ContentOverlay>
                     </ImageSection>
 
                     <FormSection component="form" onSubmit={handleSubmit}>
                         <img
-                            src="../../public/images_client/3-removebg-preview.png"
+                            src="/images_client/3-removebg-preview.png"
                             alt="EASERENT Logo"
                             style={{
                                 height: "70px",
                                 objectFit: "contain",
-
                             }}
                         />
-                        <Typography variant="h6" component="h2" sx={{ mb: 4, textAlign: 'center', marginTop: "40px"}}>
+                        <Typography variant="h6" component="h2" sx={{ mb: 4, textAlign: 'center', marginTop: "40px" }}>
                             Create Account
                         </Typography>
 
@@ -318,18 +347,27 @@ const Login = () => {
                                     size="large"
                                     type="submit"
                                     variant="contained"
-                                    color="primary"
-                                    sx={{ mt: 2 }}
+                                    sx={{
+                                        mt: 2,
+                                        backgroundColor: '#000000', // Black background color
+                                        color: '#fff', // White text color
+                                        '&:hover': {
+                                            backgroundColor: '#00000e', // Slightly darker shade on hover
+                                        },
+                                    }}
                                 >
                                     Sign Up
                                 </Button>
                             </Grid>
+
                         </Grid>
                     </FormSection>
                 </LoginCard>
             </Container>
         </Box>
+        </ThemeProvider>
+
     );
 };
 
-export default Login;
+export default Register;
