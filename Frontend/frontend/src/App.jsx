@@ -12,8 +12,8 @@ import Topbar from "../src/pages_admin/global/topbar";
 import Sidebar from "../src/pages_admin/global/sidebar";
 import Dashboard from "./pages_admin/dashboard";
 import Users from "../src/pages_admin/Users";
-import Vehicles from "../src/pages_admin/Vehicles";
-
+import Vehicles from "./pages_admin/Vehicles/VehicleTable/index.jsx";
+import AddVehicle from "./pages_admin/Vehicles/AddVehicle";
 const theme = createTheme();
 
 function AppLayout({ children }) {
@@ -64,6 +64,7 @@ function App() {
                                         <Route path="" element={<Dashboard />} />
                                         <Route path="users" element={<Users />} />
                                         <Route path="vehicles" element={<Vehicles />} />
+                                        <Route path="vehicles/add" element={<AddVehicle />} />
                                     </Routes>
                                 </main>
                             </div>

@@ -28,7 +28,7 @@ const Search = () => {
                                         endDate={endDate}
 
                                         dateFormat="dd, MMMM, yyyy"
-                                    />
+                                     />
                                 </div>
                                 <div className="item-search item-search-2">
                                     <label className="item-search-label"> Drop-off date </label>
@@ -43,7 +43,7 @@ const Search = () => {
                                 </div>
 
                                 <button className="search-btn">
-                                    Find a Vehicle ->
+                                    Find a Vehicle
                                 </button>
                             </div>
                         </Col>

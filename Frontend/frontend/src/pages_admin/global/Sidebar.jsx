@@ -27,10 +27,10 @@ const Item = ({ title, to, icon, selected, setSelected, color, onClick }) => {
                 setSelected(title);
                 if (onClick) onClick();
             }}
-            icon={React.cloneElement(icon, { style: { color: isActive ? colors.greenAccent[500] : 'white' } })} // Icon color changes when active
+            icon={React.cloneElement(icon, { style: { color: isActive ? colors.greenAccent[900] : 'white' } })} // Icon color changes when active
             style={{
                 color: 'white', // Always white for title text
-                backgroundColor: isActive ? colors.greenAccent[300] : 'transparent', // Optional: background color change when active
+                backgroundColor: isActive ? colors.greenAccent[400] : 'transparent', // Optional: background color change when active
                 borderLeft: isActive ? `4px solid ${colors.greenAccent[500]}` : 'none',
                 borderRadius: '50px',
                 padding: '5px 10px', // Adjust padding
