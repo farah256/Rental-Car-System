@@ -1,33 +1,38 @@
 import React, { useState } from 'react';
-import { Box, Button, Card, Container, Grid, IconButton, InputAdornment, Link, TextField, Typography, styled, ThemeProvider, createTheme } from '@mui/material';
+import { Box, Button, Card, Container, Grid, IconButton, InputAdornment, Typography, styled, ThemeProvider, createTheme } from '@mui/material';
 import { Person as PersonIcon, Visibility as VisibilityIcon, VisibilityOff as VisibilityOffIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';  // Import useTheme
+import { Link } from 'react-router-dom';
+import { TextField } from '@mui/material';
 
-// Create a custom theme
+// Create a theme with custom styles for TextField
 const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#1976d2', // Primary color
+    components: {
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    '& .MuiInputBase-root': {
+                        color: 'black',
+                    },
+                    '& .MuiInputLabel-root': {
+                        color: 'black',
+                    },
+                    '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'black',
+                    },
+                },
+            },
         },
-        secondary: {
-            main: '#f50057', // Secondary color
-        },
-        background: {
-            default: '#fff', // Default background color
-        },
-    },
-    typography: {
-        fontFamily: '"Roboto", sans-serif', // Custom font
     },
 });
 
 // Styled components
 const LoginCard = styled(Card)(({ theme }) => ({
-    maxWidth: '100%',
+    maxWidth: 1000,
     margin: 'auto',
     overflow: 'hidden',
     display: 'flex',
+    backgroundColor: '#ffffff',
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
     },
@@ -36,8 +41,8 @@ const LoginCard = styled(Card)(({ theme }) => ({
 const ImageSection = styled(Box)(({ theme }) => ({
     position: 'relative',
     flex: 1,
-    minHeight: 450,
-    minWidth: 400,
+    minHeight: 500,
+    minWidth: 300,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -46,10 +51,6 @@ const ImageSection = styled(Box)(({ theme }) => ({
     textAlign: 'center',
     padding: theme.spacing(4),
     overflow: 'hidden',
-    [theme.breakpoints.down('md')]: {
-        minHeight: 300,
-        minWidth: '100%',
-    },
 }));
 
 const VideoBackground = styled('video')({
@@ -72,17 +73,12 @@ const FormSection = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: 'white',
-    color: '#000',
-    [theme.breakpoints.down('md')]: {
-        padding: theme.spacing(2),
-    },
 }));
 
 const ContentOverlay = styled(Box)({
     position: 'relative',
     zIndex: 2,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     minHeight: 450,
     minWidth: 400,
     width: '100%',
@@ -95,19 +91,18 @@ const ContentOverlay = styled(Box)({
 });
 
 const SignUpButton = styled(Button)(({ theme }) => ({
-    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Same as your .banner-btn.see-all background color
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
     color: 'white',
-    border: '1px solid rgba(255, 255, 255, 255)', // Border color similar to the original style
+    border: '1px solid rgba(255, 255, 255, 255)',
     borderRadius: '20px',
     padding: '8px 24px',
     textTransform: 'none',
     fontWeight: 500,
     '&:hover': {
-        backgroundColor: 'rgba(0, 0, 0, 0.7)', // Same as hover effect for the .banner-btn.see-all
-        borderColor: 'rgba(255, 255, 255, 255)', // Border color on hover
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        borderColor: 'rgba(255, 255, 255, 255)',
     },
 }));
-
 
 const Login = () => {
     const [values, setValues] = useState({
@@ -116,7 +111,6 @@ const Login = () => {
         showPassword: false,
     });
     const navigate = useNavigate();
-    const theme = useTheme();
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -140,8 +134,7 @@ const Login = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    bgcolor: '#ffffff',
-                    color: '#000',
+                    bgcolor: '#f5f5f5',
                 }}
             >
                 <Container maxWidth="md" sx={{ py: 4 }}>
@@ -153,15 +146,12 @@ const Login = () => {
                             </VideoBackground>
                             <ContentOverlay>
                                 <Typography
-                                    variant="h2"
+                                    variant="h4"
                                     component="h1"
                                     sx={{
                                         fontWeight: 'bold',
                                         mb: 2,
                                         textAlign: 'center',
-                                        [theme.breakpoints.down('sm')]: {
-                                            fontSize: '2rem',
-                                        },
                                     }}
                                 >
                                     Rent with ease
@@ -169,24 +159,23 @@ const Login = () => {
                                     your desired Cars
                                 </Typography>
                                 <Typography
-                                    variant="h4"
+                                    variant="h6"
                                     sx={{
                                         mb: 4,
                                         textAlign: 'center',
-                                        [theme.breakpoints.down('sm')]: {
-                                            fontSize: '1rem',
-                                        },
                                     }}
                                 >
                                     Fly with wheels
                                 </Typography>
                                 <Box sx={{ position: 'absolute', display: 'flex', alignItems: 'center', gap: 2, bottom: 16 }}>
-                                    <Typography variant="h5" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                                    <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                                         Don't have an account?
                                     </Typography>
-                                    <SignUpButton  variant="contained" disableElevation onClick={() => navigate('/registration')}>
-                                        Sign Up
-                                    </SignUpButton>
+                                    <Link to="/registration" style={{ textDecoration: 'none' }}>
+                                        <SignUpButton variant="contained" disableElevation>
+                                            Sign Up
+                                        </SignUpButton>
+                                    </Link>
                                 </Box>
                             </ContentOverlay>
                         </ImageSection>
@@ -196,17 +185,15 @@ const Login = () => {
                                 src="/images_client/3-removebg-preview.png"
                                 alt="EASERENT Logo"
                                 style={{
-                                    height: '70px',
-                                    objectFit: 'contain',
-                                    marginBottom: '10px',
+                                    height: "70px",
+                                    objectFit: "contain",
                                 }}
                             />
-                            <Typography variant="h4" component="h2" sx={{ mb: 4, textAlign: 'center', marginTop: "40px" }}>
+                            <Typography variant="h6" component="h2" sx={{ mb: 4, textAlign: 'center', marginTop: "40px" }}>
                                 Welcome back!
                             </Typography>
 
-                            <Grid container spacing={3}>
-                                {/* Username Field */}
+                            <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth
@@ -217,31 +204,13 @@ const Login = () => {
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <PersonIcon sx={{ color: 'black' }} />
+                                                    <PersonIcon />
                                                 </InputAdornment>
                                             ),
-                                        }}
-                                        sx={{
-                                            color: 'black',
-                                            '& .MuiOutlinedInput-root': {
-                                                '& fieldset': {
-                                                    borderColor: 'black',
-                                                },
-                                                '&:hover fieldset': {
-                                                    borderColor: 'black',
-                                                },
-                                                '&.Mui-focused fieldset': {
-                                                    borderColor: 'black',
-                                                },
-                                            },
-                                            '& .MuiInputLabel-root': {
-                                                color: 'black',
-                                            },
                                         }}
                                     />
                                 </Grid>
 
-                                {/* Password Field */}
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth
@@ -251,47 +220,38 @@ const Login = () => {
                                         value={values.password}
                                         onChange={handleChange('password')}
                                         InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <Box sx={{ width: 24 }} />
-                                                </InputAdornment>
-                                            ),
                                             endAdornment: (
                                                 <InputAdornment position="end">
                                                     <IconButton onClick={handleClickShowPassword} edge="end">
-                                                        {values.showPassword ? <VisibilityOffIcon sx={{ color: 'black' }} /> : <VisibilityIcon sx={{ color: 'black' }} />}
+                                                        {values.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                                                     </IconButton>
                                                 </InputAdornment>
                                             ),
-                                        }}
-                                        sx={{
-                                            color: 'black',
-                                            '& .MuiOutlinedInput-root': {
-                                                '& fieldset': {
-                                                    borderColor: 'black',
-                                                },
-                                                '&:hover fieldset': {
-                                                    borderColor: 'black',
-                                                },
-                                                '&.Mui-focused fieldset': {
-                                                    borderColor: 'black',
-                                                },
-                                            },
-                                            '& .MuiInputLabel-root': {
-                                                color: 'black',
-                                            },
                                         }}
                                     />
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <Button fullWidth size="large" type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+                                    <Button
+                                        fullWidth
+                                        size="large"
+                                        type="submit"
+                                        variant="contained"
+                                        sx={{
+                                            mt: 2,
+                                            backgroundColor: '#000000',
+                                            color: '#fff',
+                                            '&:hover': {
+                                                backgroundColor: '#00000e',
+                                            },
+                                        }}
+                                    >
                                         Login
                                     </Button>
                                 </Grid>
 
                                 <Grid item xs={12} textAlign="center">
-                                    <Link href="#" underline="hover" color="black">
+                                    <Link href="#" style={{ color: 'black', textDecoration: 'underline' }}>
                                         Forgot your password? Click Here
                                     </Link>
                                 </Grid>
