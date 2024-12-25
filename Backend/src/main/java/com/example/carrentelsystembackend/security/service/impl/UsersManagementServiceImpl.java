@@ -37,6 +37,7 @@ public class UsersManagementServiceImpl implements UsersManagementService {
         RequestResponseDTO resp = new RequestResponseDTO();
 
         try {
+            // Création de l'utilisateur
             User ourUser = new User();
             ourUser.setEmail(registrationRequest.getEmail());
             ourUser.setAdresse(registrationRequest.getAddress());
@@ -46,19 +47,25 @@ public class UsersManagementServiceImpl implements UsersManagementService {
             ourUser.setPhone(registrationRequest.getPhone());
             ourUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
 
+            // Sauvegarde de l'utilisateur dans la base de données
             User ourUsersResult = userRepository.save(ourUser);
-            if (ourUsersResult.getId()>0) {
-                resp.setOurUser((ourUsersResult));
+            if (ourUsersResult.getId() > 0) {
+                // Génération du token JWT après l'enregistrement
+                String jwt = jwtService.generateToken(ourUsersResult);
+                resp.setToken(jwt); // Ajout du token à la réponse
+
+                resp.setOurUser(ourUsersResult);
                 resp.setMessage("User Saved Successfully");
                 resp.setStatusCode(200);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             resp.setStatusCode(500);
             resp.setError(e.getMessage());
         }
         return resp;
     }
+
     @Override
     @PreAuthorize("hasRole('ADMIN')")  // Sécurise la méthode pour les admins uniquement
     public RequestResponseDTO registerAdmin(RequestResponseDTO registrationRequest) {

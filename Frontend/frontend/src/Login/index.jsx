@@ -4,6 +4,7 @@ import { Person as PersonIcon, Visibility as VisibilityIcon, VisibilityOff as Vi
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { TextField } from '@mui/material';
+import UserService from "../service/UserService.js";
 
 // Create a theme with custom styles for TextField
 const theme = createTheme({
@@ -104,12 +105,14 @@ const SignUpButton = styled(Button)(({ theme }) => ({
     },
 }));
 
-const Login = () => {
+const Login = () =>
+{
     const [values, setValues] = useState({
         username: '',
         password: '',
         showPassword: false,
     });
+    const [error, setError] = useState('')
     const navigate = useNavigate();
 
     const handleChange = (prop) => (event) => {
@@ -120,12 +123,35 @@ const Login = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Login attempted:', { username: values.username, password: values.password });
-    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    return (
+        try {
+            const userData = await UserService.login(values.username, values.password)
+            console.log(userData)
+            if (userData.token) {
+                localStorage.setItem('token', userData.token)
+                localStorage.setItem('role', userData.role)
+
+                if (userData.role === 'ADMIN') {
+                    navigate('/admin/'); // Redirige vers l'espace admin
+                } else if (userData.role === 'USER') {
+                    navigate('/'); // Redirige vers l'espace client
+                }
+            }else{
+                setError(userData.message)
+            }
+
+        } catch (error) {
+            console.log(error)
+            setError(error.message)
+            setTimeout(() => {
+                setError('');
+            }, 5000);
+        }};
+
+
+            return (
         <ThemeProvider theme={theme}>
             <Box
                 sx={{

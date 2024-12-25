@@ -85,10 +85,10 @@ function App() {
                     {/* Routes utilisateurs authentifiés */}
                     {UserService.isAuthenticated() && (
                         <Route
-                            path="/profile"
+                            path="/"
                             element={
                                 <AppLayout>
-                                    {/* <ProfilePage /> */}
+                                     <Home />
                                 </AppLayout>
                             }
                         />

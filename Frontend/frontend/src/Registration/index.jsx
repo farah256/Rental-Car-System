@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
     Box,
     Button,
@@ -21,6 +22,7 @@ import {
     Phone as PhoneIcon,
 } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import userService from "../service/UserService.js";
 const SignUpButton = styled(Button)(({ theme }) => ({
     backgroundColor: 'rgba(0, 0, 0, 0.1)', // Same as your .banner-btn.see-all background color
     color: 'white',
@@ -135,6 +137,8 @@ const Register = () => {
         showPassword: false,
         showConfirmPassword: false,
     });
+    const [error, setError] = useState('')
+    const navigate = useNavigate();
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -147,10 +151,56 @@ const Register = () => {
         });
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Sign up attempted:', values);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (values.password !== values.confirmPassword) {
+            setError("Passwords do not match");
+            return;
+        }
+        try {
+            const requestBody = {
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.email,
+                address: values.address,
+                phone: values.phoneNumber,
+                password: values.password,
+            };
+
+            const userData = await userService.register(requestBody);
+            console.log(userData);
+
+            // Réinitialisation des champs du formulaire
+            setValues({
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+                address: '',
+                phoneNumber: '',
+                showPassword: false,
+                showConfirmPassword: false,
+            });
+
+            alert('User registered successfully');
+            if (userData.token) {
+                localStorage.setItem('token', userData.token);
+                localStorage.setItem('role', userData.role);
+
+                if (userData.role === 'ADMIN') {
+                    navigate('/admin/'); // Redirige vers l'espace admin
+                } else {
+                    navigate('/'); // Redirige vers l'espace client
+                }}
+
+        } catch (error) {
+            console.error('Error registering user:', error);
+            alert('An error occurred while registering the user.');
+        }
     };
+
+
 
     return (
         <ThemeProvider theme={theme}>
