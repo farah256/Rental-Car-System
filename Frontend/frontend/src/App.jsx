@@ -12,7 +12,7 @@ import Topbar from "../src/pages_admin/global/topbar";
 import Sidebar from "../src/pages_admin/global/sidebar";
 import Dashboard from "./pages_admin/dashboard";
 import Users from "../src/pages_admin/Users";
-import Vehicles from "../src/pages_admin/Vehicles";
+import Vehicles from "../src/pages_admin/Vehicles/VehicleTable";
 
 const theme = createTheme();
 

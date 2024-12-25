@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddIcon from "@mui/icons-material/Add";
 import useStyles from './index.styles.js'
-import VehicleService from "../VehicleService"; // Import VehicleService
+import VehicleService from "../../../services/VehiculeService.js"; // Import VehicleService
 
 const Vehicles = () => {
     const theme = useTheme();
