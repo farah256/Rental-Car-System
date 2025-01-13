@@ -4,16 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_12_2024_01_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_12_2024_01_18__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2024_01_17__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2024_01_17__Changes_.xml" afterDir="false" />
+    <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="(Edit imports)">
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/PaymentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/StripeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/PaymentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/StripeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/config/StripeConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/dto/PaymentRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Payment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/repository/PaymentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/web/PaymentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/Registration/Register.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_admin/StatBox.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Booking/contractView.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Booking/contractView.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Booking/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Booking/index.styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/CalendarPage/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Settings/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users/index.styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/services/BookingService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/services/DashboardService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_12_2024_01_18_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_12_2024_01_18__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2024_01_17_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2024_01_17__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Mapper/VehiculeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Mapper/VehiculeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/ReservationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/VehiculeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/VehiculeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/ReservationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/ReservationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/VehiculeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/VehiculeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/dto/VehiculeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/dto/VehiculeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Vehicule.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Vehicule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/service/UsersManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/service/UsersManagementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/service/impl/UsersManagementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/service/impl/UsersManagementServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/web/UsersManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/web/UsersManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/web/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/web/ReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/web/VehiculeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/web/VehiculeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/Registration/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/Registration/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Search/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Search/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/index_client.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/index_client.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Dashboard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Vehicles/AddVehicle/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Vehicles/AddVehicle/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Vehicles/VehicleTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Vehicles/VehicleTable/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Vehicles/VehicleTable/index.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Vehicles/VehicleTable/index.styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/global/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/global/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/global/Topbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/global/Topbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/services/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/services/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/services/VehiculeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/services/VehiculeService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +77,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -58,33 +112,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.CarRentelSystemBackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;d2f1b336f637db1395f0202fe4700473&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CarRentelSystemBackendApplication.executor": "Run",
+    "Node.js.index.jsx.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.CarRentelSystemBackendApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "<unknown>",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/farah/Documents/Projects/Rental-Car-System",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "spring.configuration.checksum": "d2f1b336f637db1395f0202fe4700473",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -94,11 +152,35 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.carrentelsystembackend.enums" />
+      <recent name="com.example.carrentelsystembackend.entity" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Frontend/frontend/public/images_client" />
+      <recent name="$PROJECT_DIR$/Frontend/frontend/public" />
+      <recent name="$PROJECT_DIR$/Frontend/frontend/src/components_client/HowITWorks" />
+      <recent name="$PROJECT_DIR$/Frontend/frontend/src/components_admin" />
+      <recent name="$PROJECT_DIR$/Frontend/frontend/src/pages_admin/Users" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.CarRentelSystemBackendApplication">
+    <configuration name="CarRentelSystemBackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.carrentelsystembackend.CarRentelSystemBackendApplication" />
+      <module name="car-rentel-system-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.carrentelsystembackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="index.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/Frontend/frontend/src/Registration/index.jsx" working-dir="$PROJECT_DIR$/Frontend/frontend/src/Registration">
+      <method v="2" />
+    </configuration>
     <configuration name="CarRentelSystemBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="car-rentel-system-backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.carrentelsystembackend.CarRentelSystemBackendApplication" />
@@ -106,14 +188,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
-      </set>
-    </attachedChunks>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CarRentelSystemBackendApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -132,6 +211,21 @@
       <workItem from="1734903951657" duration="21975000" />
       <workItem from="1735052078339" duration="2924000" />
       <workItem from="1735076889085" duration="46000" />
+      <workItem from="1735207377660" duration="7484000" />
+      <workItem from="1735220660082" duration="3388000" />
+      <workItem from="1735239512575" duration="8534000" />
+      <workItem from="1735378397802" duration="10751000" />
+      <workItem from="1735468462361" duration="20921000" />
+      <workItem from="1735551202468" duration="9774000" />
+      <workItem from="1735573196229" duration="2742000" />
+      <workItem from="1735588668055" duration="1757000" />
+      <workItem from="1735591933276" duration="267000" />
+      <workItem from="1735594265630" duration="188000" />
+      <workItem from="1735829861293" duration="131000" />
+      <workItem from="1735830027810" duration="319000" />
+      <workItem from="1736589410300" duration="33000" />
+      <workItem from="1736589476887" duration="66000" />
+      <workItem from="1736589572954" duration="1515000" />
     </task>
     <task id="LOCAL-00001" summary="Add Backend">
       <option name="closed" value="true" />

@@ -18,13 +18,12 @@ public class VehiculeDTO {
     private VehiculeType type;
     private float price;
     private VehiculeStatut statu = VehiculeStatut.Available;
-    private byte[] image;
 
 
     public VehiculeDTO() {
     }
 
-    public VehiculeDTO(String matricule, String brand, String model, int year, VehiculeType type, float price, VehiculeStatut statu, byte[] image) {
+    public VehiculeDTO(String matricule, String brand, String model, int year, VehiculeType type, float price, VehiculeStatut statu) {
         this.matricule = matricule;
         this.brand = brand;
         this.model = model;
@@ -32,7 +31,6 @@ public class VehiculeDTO {
         this.type = type;
         this.price = price;
         this.statu = statu;
-        this.image = image;
     }
 
     public String getMatricule() {
@@ -91,13 +89,6 @@ public class VehiculeDTO {
         this.statu = statu;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
 
 

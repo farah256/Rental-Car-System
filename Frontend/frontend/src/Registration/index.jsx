@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -11,7 +10,7 @@ import {
     IconButton,
     InputAdornment,
     Typography,
-    styled,
+    TextField, styled,
 } from '@mui/material';
 import {
     Person as PersonIcon,
@@ -23,107 +22,27 @@ import {
 } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import userService from "../services/UserService.js";
-const SignUpButton = styled(Button)(({ theme }) => ({
-    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Same as your .banner-btn.see-all background color
-    color: 'white',
-    border: '1px solid rgba(255, 255, 255, 255)', // Border color similar to the original style
-    borderRadius: '20px',
-    padding: '8px 24px',
-    textTransform: 'none',
-    fontWeight: 500,
-    '&:hover': {
-        backgroundColor: 'rgba(0, 0, 0, 0.7)', // Same as hover effect for the .banner-btn.see-all
-        borderColor: 'rgba(255, 255, 255, 255)', // Border color on hover
-    },
-}));
+import '../Registration/Register.css';
 
-
-// Create a theme with custom styles for TextField
 const theme = createTheme({
-
     components: {
         MuiTextField: {
             styleOverrides: {
                 root: {
                     '& .MuiInputBase-root': {
-                        color: 'black', // Text color
+                        color: 'black',
                     },
                     '& .MuiInputLabel-root': {
-                        color: 'black', // Label color
+                        color: 'black',
                     },
                     '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'black', // Border color
+                        borderColor: 'black',
                     },
                 },
             },
         },
     },
 });
-// Styled components
-const LoginCard = styled(Card)(({ theme }) => ({
-    maxWidth: 1000,
-    margin: 'auto',
-    overflow: 'hidden',
-    display: 'flex',
-    backgroundColor: '#ffffff',  // Adjusted background color for consistency with login
-    [theme.breakpoints.down('md')]: {
-        flexDirection: 'column',
-    },
-}));
-
-const ImageSection = styled(Box)(({ theme }) => ({
-    position: 'relative',
-    flex: 1,
-    minHeight: 700,
-    minWidth: 300,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'white',
-    textAlign: 'center',
-    padding: theme.spacing(4),
-    overflow: 'hidden',
-}));
-
-const VideoBackground = styled('video')({
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    minWidth: '100%',
-    minHeight: '100%',
-    width: 'auto',
-    height: 'auto',
-    transform: 'translate(-50%, -50%)',
-    objectFit: 'cover',
-    zIndex: 0,
-});
-
-const FormSection = styled(Box)(({ theme }) => ({
-    flex: 1,
-    padding: theme.spacing(4),
-    minWidth: 300,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-}));
-
-const ContentOverlay = styled(Box)({
-    position: 'relative',
-    zIndex: 2,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    minHeight: 450,
-    minWidth: 400,
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '2rem',
-});
-
-
 
 const Register = () => {
     const [values, setValues] = useState({
@@ -137,7 +56,7 @@ const Register = () => {
         showPassword: false,
         showConfirmPassword: false,
     });
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (prop) => (event) => {
@@ -151,12 +70,41 @@ const Register = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const validateForm = () => {
+        // Basic validation for empty fields
+        if (!values.firstName || !values.lastName || !values.email || !values.address || !values.phoneNumber || !values.password || !values.confirmPassword) {
+            setError("All fields are required");
+            return false;
+        }
+
+        // Password match check
         if (values.password !== values.confirmPassword) {
             setError("Passwords do not match");
-            return;
+            return false;
         }
+
+        // Email format validation
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(values.email)) {
+            setError("Invalid email format");
+            return false;
+        }
+
+        // Phone number validation (simple validation for length and digits, adjust as needed)
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(values.phoneNumber)) {
+            setError("Invalid phone number format");
+            return false;
+        }
+
+        setError(''); // Clear any existing error messages
+        return true;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!validateForm()) return;
+
         try {
             const requestBody = {
                 firstName: values.firstName,
@@ -170,7 +118,6 @@ const Register = () => {
             const userData = await userService.register(requestBody);
             console.log(userData);
 
-            // Réinitialisation des champs du formulaire
             setValues({
                 firstName: '',
                 lastName: '',
@@ -189,234 +136,206 @@ const Register = () => {
                 localStorage.setItem('role', userData.role);
 
                 if (userData.role === 'ADMIN') {
-                    navigate('/admin/'); // Redirige vers l'espace admin
+                    navigate('/admin/');
                 } else {
-                    navigate('/'); // Redirige vers l'espace client
-                }}
-
+                    navigate('/');
+                }
+            }
         } catch (error) {
             console.error('Error registering user:', error);
             alert('An error occurred while registering the user.');
         }
     };
 
-
-
     return (
         <ThemeProvider theme={theme}>
-        <Box
-            sx={{
-                minHeight: '100vh',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                bgcolor: '#f5f5f5',
-            }}
-        >
-            <Container maxWidth="md" sx={{ py: 4 }}>
-                <LoginCard>
-                    <ImageSection>
-                        <VideoBackground autoPlay loop muted playsInline>
-                            <source src="/images_client/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </VideoBackground>
-                        <ContentOverlay>
-                            <Typography
-                                variant="h4"
-                                component="h1"
-                                sx={{
-                                    fontWeight: 'bold',
-                                    mb: 2,
-                                    textAlign: 'center',
-                                }}
-                            >
-                                Rent with ease
-                                <br />
-                                your desired Cars
-                            </Typography>
-                            <Typography
-                                variant="h6"
-                                sx={{
-                                    mb: 4,
-                                    textAlign: 'center',
-                                }}
-                            >
-                                Fly with wheels
-                            </Typography>
-                            <Box sx={{ position: 'absolute', display: 'flex', alignItems: 'center', gap: 2, bottom: 16 }}>
-                                <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                                    Already have an account?
-                                </Typography>
-                                <Link to="/login" style={{ textDecoration: 'none' }}>
-                                    <SignUpButton variant="contained" disableElevation>
-                                        Sign In
-                                    </SignUpButton>
-                                </Link>
+            <Card>
+                <Box className="login-container-reg">
+                    <Container maxWidth="md" sx={{ py: 4 }}>
+                        <Card className="login-card-reg">
+                            <Box className="image-section-reg">
+                                <video className="video-background-reg" autoPlay loop muted playsInline>
+                                    <source src="/images_client/f6eaa45d1736d48db1fbb786dea6919b_t4.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                                <Box className="content-overlay-register1">
+                                    <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', mb: 2 }}>
+                                        Rent with ease
+                                        <br />
+                                        your desired Cars
+                                    </Typography>
+                                    <Typography variant="h6" sx={{ mb: 4 }}>
+                                        Fly with wheels
+                                    </Typography>
+                                    <Box sx={{ position: 'absolute', display: 'flex', alignItems: 'center', gap: 2, bottom: 16 }}>
+                                        <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                                            Already have an account?
+                                        </Typography>
+                                        <Link to="/login" style={{ textDecoration: 'none' }}>
+                                            <Button className="signup-button-reg" variant="contained">
+                                                Sign In
+                                            </Button>
+                                        </Link>
+                                    </Box>
+                                </Box>
                             </Box>
-                        </ContentOverlay>
-                    </ImageSection>
 
-                    <FormSection component="form" onSubmit={handleSubmit}>
-                        <img
-                            src="/images_client/3-removebg-preview.png"
-                            alt="EASERENT Logo"
-                            style={{
-                                height: "70px",
-                                objectFit: "contain",
-                            }}
-                        />
-                        <Typography variant="h6" component="h2" sx={{ mb: 4, textAlign: 'center', marginTop: "40px" }}>
-                            Create Account
-                        </Typography>
+                            <Grid component="form" onSubmit={handleSubmit} className="form-section-reg">
+                                <img
+                                    src="/images_client/3-removebg-preview.png"
+                                    alt="EASERENT Logo"
+                                    style={{ height: "70px", objectFit: "contain" }}
+                                />
+                                <Typography variant="h6" component="h2" className="form-title-reg">
+                                    Create Account
+                                </Typography>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    label="First Name"
-                                    variant="outlined"
-                                    value={values.firstName}
-                                    onChange={handleChange('firstName')}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <PersonIcon />
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Last Name"
-                                    variant="outlined"
-                                    value={values.lastName}
-                                    onChange={handleChange('lastName')}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <PersonIcon />
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Email"
-                                    variant="outlined"
-                                    type="email"
-                                    value={values.email}
-                                    onChange={handleChange('email')}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <EmailIcon />
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Address"
-                                    variant="outlined"
-                                    value={values.address}
-                                    onChange={handleChange('address')}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <HomeIcon />
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Phone Number"
-                                    variant="outlined"
-                                    value={values.phoneNumber}
-                                    onChange={handleChange('phoneNumber')}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <PhoneIcon />
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Password"
-                                    variant="outlined"
-                                    type={values.showPassword ? 'text' : 'password'}
-                                    value={values.password}
-                                    onChange={handleChange('password')}
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                <IconButton onClick={handleClickShowPassword('showPassword')} edge="end">
-                                                    {values.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Confirm Password"
-                                    variant="outlined"
-                                    type={values.showConfirmPassword ? 'text' : 'password'}
-                                    value={values.confirmPassword}
-                                    onChange={handleChange('confirmPassword')}
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                <IconButton onClick={handleClickShowPassword('showConfirmPassword')} edge="end">
-                                                    {values.showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            fullWidth
+                                            label="First Name"
+                                            variant="outlined"
+                                            value={values.firstName}
+                                            onChange={handleChange('firstName')}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <PersonIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            fullWidth
+                                            label="Last Name"
+                                            variant="outlined"
+                                            value={values.lastName}
+                                            onChange={handleChange('lastName')}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <PersonIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Email"
+                                            variant="outlined"
+                                            type="email"
+                                            value={values.email}
+                                            onChange={handleChange('email')}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <EmailIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Address"
+                                            variant="outlined"
+                                            value={values.address}
+                                            onChange={handleChange('address')}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <HomeIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Phone Number"
+                                            variant="outlined"
+                                            value={values.phoneNumber}
+                                            onChange={handleChange('phoneNumber')}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <PhoneIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Password"
+                                            variant="outlined"
+                                            type={values.showPassword ? 'text' : 'password'}
+                                            value={values.password}
+                                            onChange={handleChange('password')}
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <IconButton onClick={handleClickShowPassword('showPassword')} edge="end">
+                                                            {values.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Confirm Password"
+                                            variant="outlined"
+                                            type={values.showConfirmPassword ? 'text' : 'password'}
+                                            value={values.confirmPassword}
+                                            onChange={handleChange('confirmPassword')}
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <IconButton onClick={handleClickShowPassword('showConfirmPassword')} edge="end">
+                                                            {values.showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </Grid>
 
-                            <Grid item xs={12}>
-                                <Button
-                                    fullWidth
-                                    size="large"
-                                    type="submit"
-                                    variant="contained"
-                                    sx={{
-                                        mt: 2,
-                                        backgroundColor: '#000000', // Black background color
-                                        color: '#fff', // White text color
-                                        '&:hover': {
-                                            backgroundColor: '#00000e', // Slightly darker shade on hover
-                                        },
-                                    }}
-                                >
-                                    Sign Up
-                                </Button>
+                                    <Grid item xs={12}>
+                                        <Button
+                                            fullWidth
+                                            size="large"
+                                            type="submit"
+                                            variant="contained"
+                                            sx={{
+                                                mt: 2,
+                                                backgroundColor: '#000000',
+                                                color: '#fff',
+                                                '&:hover': {
+                                                    backgroundColor: '#00000e',
+                                                },
+                                            }}
+                                        >
+                                            Sign Up
+                                        </Button>
+                                    </Grid>
+                                </Grid>
                             </Grid>
-
-                        </Grid>
-                    </FormSection>
-                </LoginCard>
-            </Container>
-        </Box>
+                        </Card>
+                    </Container>
+                </Box>
+            </Card>
         </ThemeProvider>
-
     );
 };
 

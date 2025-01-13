@@ -24,6 +24,7 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @NotNull
     private VehiculeStatut statu;
+    @Lob
     private byte[] image;
 
     public Vehicule() {
@@ -41,6 +42,16 @@ public class Vehicule {
         this.price = price;
         this.statu = statu;
         this.image = image;
+    }
+
+    public Vehicule(String matricule, String brand, String model, int year, VehiculeType type, float price, VehiculeStatut statu) {
+        this.matricule = matricule;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.type = type;
+        this.price = price;
+        this.statu = statu;
     }
 
     public String getMatricule() {

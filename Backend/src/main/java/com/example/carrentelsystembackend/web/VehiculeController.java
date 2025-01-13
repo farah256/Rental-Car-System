@@ -1,28 +1,14 @@
 package com.example.carrentelsystembackend.web;
 
 import com.example.carrentelsystembackend.Service.VehiculeService;
-import com.example.carrentelsystembackend.dto.VehiculeDTO;
 import com.example.carrentelsystembackend.entity.Vehicule;
-//import com.example.carrentelsystembackend.util.FileUploadUtil;
 import com.example.carrentelsystembackend.enums.VehiculeStatut;
 import com.example.carrentelsystembackend.enums.VehiculeType;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.view.RedirectView;
-
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @RestController
@@ -36,26 +22,40 @@ public class VehiculeController {
     }
 
     @GetMapping
-    public List<VehiculeDTO> getVehicule(){
+    public List<Vehicule> getVehicule(){
         return vehiculeService.getVehicule();
     }
     @GetMapping("/{matricule}")
-    public VehiculeDTO getVehiculeById(@PathVariable String matricule){
+    public Vehicule getVehiculeById(@PathVariable String matricule){
         return vehiculeService.getVehiculeById(matricule);
     }
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
+
     public void addVehicule(
-            @RequestPart("vehiculeDTO") VehiculeDTO vehiculeDTO,
-            @RequestParam("image") MultipartFile file) throws IOException {
-        vehiculeService.addVehicule(vehiculeDTO, file);
+            @RequestParam String matricule,
+            @RequestParam String brand,
+            @RequestParam String model,
+            @RequestParam int year,
+            @RequestParam VehiculeType type,
+            @RequestParam float price,
+            @RequestParam VehiculeStatut statu,
+            @RequestParam MultipartFile file) throws IOException {
+        vehiculeService.addVehicule(matricule, brand, model, year, type, price, statu, file);
+
     }
 
 
-    @PutMapping("/api/admin/vehicule/{matricule}")
+    @PutMapping("{matricule}")
     public void updateVehicule(@PathVariable String matricule,
-                               @RequestBody VehiculeDTO vehicule,
-                               @RequestParam("image") MultipartFile file){
-        vehiculeService.updateVehicule(matricule,vehicule,file);
+                               @RequestParam String brand,
+                               @RequestParam String model,
+                               @RequestParam int year,
+                               @RequestParam VehiculeType type,
+                               @RequestParam float price,
+                               @RequestParam VehiculeStatut statu,
+                               @RequestParam MultipartFile file){
+        vehiculeService.updateVehicule(matricule,brand, model, year, type, price, statu,file);
     }
     @DeleteMapping("{matricule}")
     public void deleteVehicule(@PathVariable String matricule){
@@ -89,7 +89,7 @@ public class VehiculeController {
     public List<Vehicule> getVehiculesByStatus(@PathVariable VehiculeStatut status) {
         return vehiculeService.getVehiculesByStatus(status);
     }
-    @GetMapping("/total")
+    @GetMapping("/total/vehicles")
     public long getTotalNumberOfVehicles() {
         return vehiculeService.getTotalNumberOfVehicles();
     }

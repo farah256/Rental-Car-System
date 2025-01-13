@@ -1,0 +1,223 @@
+Index: Frontend/frontend/src/components_client/global/Header/Header.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useEffect, useState } from \"react\";\nimport {\n    Container,\n    Navbar,\n    Offcanvas,\n    Nav,\n    NavDropdown,\n} from \"react-bootstrap\";\nimport { NavLink, useNavigate } from \"react-router-dom\"; // Import useNavigate\nimport { FaBars } from \"react-icons/fa\"; // Import the hamburger icon\nimport \"./Header.css\";\n\nconst Header = () => {\n    const [show, setShow] = useState(false);\n    const navigate = useNavigate(); // Initialize navigate\n\n    const handleClose = () => setShow(false);\n    const handleShow = () => setShow(true);\n\n    useEffect(() => {\n        window.addEventListener(\"scroll\", isSticky);\n        return () => {\n            window.removeEventListener(\"scroll\", isSticky);\n        };\n    }, []);\n\n    const isSticky = (e) => {\n        const header = document.querySelector(\".header-section\");\n        const scrollTop = window.scrollY;\n        scrollTop >= 120\n            ? header.classList.add(\"is-sticky\")\n            : header.classList.remove(\"is-sticky\");\n    };\n\n    const closeMenu = () => {\n        if (window.innerWidth <= 991) {\n            handleClose();\n        }\n    };\n\n    // Function to navigate to the login page\n    const handleLoginNavigate = () => {\n        navigate(\"/login\"); // Replace \"/login\" with your actual login route\n    };\n\n    return (\n        <header className=\"header-section\">\n            <Container>\n                <Navbar expand={false} className=\"p-0\">\n                    <div className=\"w-100 d-flex align-items-center justify-content-between\">\n                        {/* Hamburger Icon */}\n                        <div className=\"d-block d-md-none\" onClick={handleShow}>\n                            <FaBars className=\"menu-icon\" /> {/* Display the menu icon */}\n                        </div>\n\n                        {/* Logo Section */}\n                        <Navbar.Brand className=\"mx-auto\">\n                            <NavLink to=\"/\">\n                                <img\n                                    src=\"../../../public/images_client/2-removebg-preview (2).png\"\n                                    alt=\"Logo\"\n                                    className=\"header-logo\"\n                                />\n                            </NavLink>\n                        </Navbar.Brand>\n\n                        {/* Login/Register Button */}\n                        <div className=\"ms-md-4 ms-2\">\n                            <button\n                                className=\"banner-btn see-all\"\n                                onClick={handleLoginNavigate} // Navigate to login page\n                            >\n                                Login/Registre\n                            </button>\n                        </div>\n                    </div>\n\n                    <Navbar.Offcanvas\n                        id=\"offcanvasNavbar\"\n                        aria-labelledby=\"offcanvasNavbarLabel\"\n                        placement=\"start\"\n                        show={show}\n                        onHide={handleClose}\n                    >\n                        <Offcanvas.Header closeButton>\n                            <h1 className=\"logo\">Menu</h1>\n                        </Offcanvas.Header>\n                        <Offcanvas.Body>\n                            <Nav className=\"justify-content-end flex-grow-1 pe-3\">\n                                <NavLink className=\"nav-link\" to=\"/\" onClick={closeMenu}>\n                                    Home\n                                </NavLink>\n                                <NavLink className=\"nav-link\" to=\"/about-us\" onClick={closeMenu}>\n                                    ABOUT US\n                                </NavLink>\n                                <NavLink className=\"nav-link\" to=\"/tours\" onClick={closeMenu}>\n                                    TOURS\n                                </NavLink>\n                                <NavDropdown title=\"DESTINATION\" id=\"offcanvasNavbarDropdown\">\n                                    <NavLink\n                                        className=\"nav-link text-dark\"\n                                        to=\"/destinations\"\n                                        onClick={closeMenu}\n                                    >\n                                        SPAIN TOURS\n                                    </NavLink>\n                                </NavDropdown>\n                                <NavLink className=\"nav-link\" to=\"/gallery\" onClick={closeMenu}>\n                                    GALLERY\n                                </NavLink>\n                                <NavLink className=\"nav-link\" to=\"/contact-us\" onClick={closeMenu}>\n                                    CONTACT\n                                </NavLink>\n                            </Nav>\n                        </Offcanvas.Body>\n                    </Navbar.Offcanvas>\n                </Navbar>\n            </Container>\n        </header>\n    );\n};\n\nexport default Header;\n
+===================================================================
+diff --git a/Frontend/frontend/src/components_client/global/Header/Header.jsx b/Frontend/frontend/src/components_client/global/Header/Header.jsx
+--- a/Frontend/frontend/src/components_client/global/Header/Header.jsx	(revision 64802e66c883074e4909b22f21e0dc06ed1eec81)
++++ b/Frontend/frontend/src/components_client/global/Header/Header.jsx	(date 1735086139546)
+@@ -1,123 +1,109 @@
+-import React, { useEffect, useState } from "react";
+-import {
+-    Container,
+-    Navbar,
+-    Offcanvas,
+-    Nav,
+-    NavDropdown,
+-} from "react-bootstrap";
+-import { NavLink, useNavigate } from "react-router-dom"; // Import useNavigate
+-import { FaBars } from "react-icons/fa"; // Import the hamburger icon
+-import "./Header.css";
++import React, { useEffect, useState } from 'react';
++import { NavLink, useNavigate } from 'react-router-dom';
++import { Menu } from 'lucide-react';
+ 
+ const Header = () => {
+-    const [show, setShow] = useState(false);
+-    const navigate = useNavigate(); // Initialize navigate
+-
+-    const handleClose = () => setShow(false);
+-    const handleShow = () => setShow(true);
++    const [isSticky, setIsSticky] = useState(false);
++    const [isMenuOpen, setIsMenuOpen] = useState(false);
++    const navigate = useNavigate();
+ 
+     useEffect(() => {
+-        window.addEventListener("scroll", isSticky);
+-        return () => {
+-            window.removeEventListener("scroll", isSticky);
++        const handleScroll = () => {
++            setIsSticky(window.scrollY > 120);
+         };
++
++        window.addEventListener('scroll', handleScroll);
++        return () => window.removeEventListener('scroll', handleScroll);
+     }, []);
+ 
+-    const isSticky = (e) => {
+-        const header = document.querySelector(".header-section");
+-        const scrollTop = window.scrollY;
+-        scrollTop >= 120
+-            ? header.classList.add("is-sticky")
+-            : header.classList.remove("is-sticky");
+-    };
+-
+-    const closeMenu = () => {
+-        if (window.innerWidth <= 991) {
+-            handleClose();
+-        }
+-    };
+-
+-    // Function to navigate to the login page
+     const handleLoginNavigate = () => {
+-        navigate("/login"); // Replace "/login" with your actual login route
++        navigate('/login');
+     };
++
++    const menuItems = [
++        { path: '/', label: 'Home' },
++        { path: '/about-us', label: 'About Us' },
++        { path: '/tours', label: 'Tours' },
++        { path: '/destinations', label: 'Destinations' },
++        { path: '/gallery', label: 'Gallery' },
++        { path: '/contact-us', label: 'Contact' },
++    ];
+ 
+     return (
+-        <header className="header-section">
+-            <Container>
+-                <Navbar expand={false} className="p-0">
+-                    <div className="w-100 d-flex align-items-center justify-content-between">
+-                        {/* Hamburger Icon */}
+-                        <div className="d-block d-md-none" onClick={handleShow}>
+-                            <FaBars className="menu-icon" /> {/* Display the menu icon */}
+-                        </div>
++        <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isSticky ? 'bg-white shadow-md' : ''}`}>
++            <div className="container mx-auto px-4">
++                <div className="flex items-center justify-between h-20">
++                    {/* Menu Icon - Always visible on mobile, hidden on desktop when sticky */}
++                    <button
++                        onClick={() => setIsMenuOpen(!isMenuOpen)}
++                        className={`lg:hidden ${isSticky ? 'text-black' : 'text-white'}`}
++                    >
++                        <Menu size={24} />
++                    </button>
+ 
+-                        {/* Logo Section */}
+-                        <Navbar.Brand className="mx-auto">
+-                            <NavLink to="/">
+-                                <img
+-                                    src="../../../public/images_client/2-removebg-preview (2).png"
+-                                    alt="Logo"
+-                                    className="header-logo"
+-                                />
+-                            </NavLink>
+-                        </Navbar.Brand>
++                    {/* Logo - Centers when not sticky, moves left when sticky */}
++                    <div className={`transition-all duration-300 ${isSticky ? 'lg:ml-0' : 'lg:absolute lg:left-1/2 lg:-translate-x-1/2'}`}>
++                        <NavLink to="/">
++                            <img
++                                src="/logo.png"
++                                alt="Logo"
++                                className="h-16 object-contain"
++                            />
++                        </NavLink>
++                    </div>
+ 
+-                        {/* Login/Register Button */}
+-                        <div className="ms-md-4 ms-2">
+-                            <button
+-                                className="banner-btn see-all"
+-                                onClick={handleLoginNavigate} // Navigate to login page
+-                            >
+-                                Login/Registre
+-                            </button>
+-                        </div>
+-                    </div>
++                    {/* Desktop Menu - Hidden when not sticky, visible when sticky */}
++                    <nav className={`hidden lg:flex space-x-6 ${isSticky ? 'opacity-100' : 'opacity-0'}`}>
++                        {menuItems.map((item) => (
++                            <NavLink
++                                key={item.path}
++                                to={item.path}
++                                className={`font-medium ${isSticky ? 'text-black' : 'text-white'}`}
++                            >
++                                {item.label}
++                            </NavLink>
++                        ))}
++                    </nav>
++
++                    {/* Login Button */}
++                    <button
++                        onClick={handleLoginNavigate}
++                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
++                    >
++                        Login/Register
++                    </button>
++                </div>
+ 
+-                    <Navbar.Offcanvas
+-                        id="offcanvasNavbar"
+-                        aria-labelledby="offcanvasNavbarLabel"
+-                        placement="start"
+-                        show={show}
+-                        onHide={handleClose}
+-                    >
+-                        <Offcanvas.Header closeButton>
+-                            <h1 className="logo">Menu</h1>
+-                        </Offcanvas.Header>
+-                        <Offcanvas.Body>
+-                            <Nav className="justify-content-end flex-grow-1 pe-3">
+-                                <NavLink className="nav-link" to="/" onClick={closeMenu}>
+-                                    Home
+-                                </NavLink>
+-                                <NavLink className="nav-link" to="/about-us" onClick={closeMenu}>
+-                                    ABOUT US
+-                                </NavLink>
+-                                <NavLink className="nav-link" to="/tours" onClick={closeMenu}>
+-                                    TOURS
+-                                </NavLink>
+-                                <NavDropdown title="DESTINATION" id="offcanvasNavbarDropdown">
+-                                    <NavLink
+-                                        className="nav-link text-dark"
+-                                        to="/destinations"
+-                                        onClick={closeMenu}
+-                                    >
+-                                        SPAIN TOURS
+-                                    </NavLink>
+-                                </NavDropdown>
+-                                <NavLink className="nav-link" to="/gallery" onClick={closeMenu}>
+-                                    GALLERY
++                {/* Mobile Menu - Slides in from left */}
++                <div
++                    className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-300 lg:hidden ${
++                        isMenuOpen ? 'translate-x-0' : '-translate-x-full'
++                    }`}
++                >
++                    <div className="p-4">
++                        <button
++                            onClick={() => setIsMenuOpen(false)}
++                            className="absolute top-4 right-4 text-gray-600"
++                        >
++                            ×
++                        </button>
++                        <div className="mt-8 space-y-4">
++                            {menuItems.map((item) => (
++                                <NavLink
++                                    key={item.path}
++                                    to={item.path}
++                                    className="block text-gray-800 hover:text-blue-600"
++                                    onClick={() => setIsMenuOpen(false)}
++                                >
++                                    {item.label}
+                                 </NavLink>
+-                                <NavLink className="nav-link" to="/contact-us" onClick={closeMenu}>
+-                                    CONTACT
+-                                </NavLink>
+-                            </Nav>
+-                        </Offcanvas.Body>
+-                    </Navbar.Offcanvas>
+-                </Navbar>
+-            </Container>
++                            ))}
++                        </div>
++                    </div>
++                </div>
++            </div>
+         </header>
+     );
+ };
+ 
+-export default Header;
++export default Header;
+\ No newline at end of file

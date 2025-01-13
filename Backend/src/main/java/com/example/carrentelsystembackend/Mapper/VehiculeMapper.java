@@ -19,9 +19,7 @@ public class VehiculeMapper {
                 vehicule.getYear(),
                 vehicule.getType(),
                 vehicule.getPrice(),
-                vehicule.getStatu(),
-                vehicule.getImage()
-        );
+                vehicule.getStatu());
     }
 
     // Converts a list of Vehicule entities to a list of VehiculeDTOs
@@ -40,8 +38,7 @@ public class VehiculeMapper {
                 vehiculeDTO.getYear(),
                 vehiculeDTO.getType(),
                 vehiculeDTO.getPrice(),
-                vehiculeDTO.getStatu(),
-                vehiculeDTO.getImage()
+                vehiculeDTO.getStatu()
         );
     }
 }

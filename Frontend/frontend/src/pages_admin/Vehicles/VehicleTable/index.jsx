@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Header from "../../../components_admin/Header.jsx";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddIcon from "@mui/icons-material/Add";
 import useStyles from './index.styles.js'
 import VehicleService from "../../../services/VehiculeService.js"; // Import VehicleService
@@ -50,14 +49,6 @@ const Vehicles = () => {
                 console.error("Error during delete operation:", error);
             }
         }
-    };
-
-    const handleView = (matricule) => {
-        window.location.href = `/admin/vehicles/view/${matricule}`;
-    };
-
-    const handleEdit = (matricule) => {
-        window.location.href = `/admin/vehicles/edit/${matricule}`;
     };
 
     const columns = [
@@ -117,31 +108,47 @@ const Vehicles = () => {
             field: "statu",
             headerName: "Status",
             flex: 1,
-            renderCell: (params) => (
-                <Box
-                    className={params.value === "Available" ? classes.available : params.value === "Rented" ? classes.rented : classes.other}
-                >
-                    {params.value}
-                </Box>
-            ),
+            renderCell: (params) => {
+                const statusStyles = {
+                    Available: classes.available,
+                    UnderMaintenance: classes.UnderMaintenance,
+                    Booked: classes.Booked,
+                    Taken: classes.Taken,
+                    Waiting: classes.Waiting,
+                };
+
+                const statusClass = statusStyles[params.value] || classes.other; // Default to "other" if the status is not recognized
+
+                return (
+                    <Box className={statusClass}>
+                        {params.value}
+                    </Box>
+                );
+            },
         },
+
         {
             field: "actions",
             headerName: "Actions",
             flex: 1,
             renderCell: (params) => {
+                console.log('Row data:', params.row);
+                if (!params.row.matricule) {
+                    console.error('Matricule is missing for row:', params.row);
+                }
                 return (
                     <Box display="flex" gap="8px">
-                        <Tooltip title="View">
-                            <IconButton onClick={() => handleView(params.row.matricule)} sx={{ color: colors.greenAccent[500] }}>
-                                <VisibilityIcon />
-                            </IconButton>
-                        </Tooltip>
+
                         <Tooltip title="Edit">
-                            <IconButton onClick={() => handleEdit(params.row.matricule)} sx={{ color: colors.blueAccent[500] }}>
+                            <IconButton
+                                sx={{ color: colors.blueAccent[500] }}
+                                component={Link}
+                                to={`/admin/vehicles/update/${params.row.matricule}`}
+                            >
                                 <EditIcon />
                             </IconButton>
                         </Tooltip>
+
                         <Tooltip title="Delete">
                             <IconButton onClick={() => handleDelete(params.row.matricule)} sx={{ color: colors.redAccent[500] }}>
                                 <DeleteIcon />
@@ -201,7 +208,6 @@ const Vehicles = () => {
             >
                 <DataGrid
                     rows={Array.isArray(vehicles) ? vehicles : []}
-                    rows={vehicles}
                     columns={columns}
                     loading={loading}
                     getRowId={(row) => row.matricule}

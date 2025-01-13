@@ -1,0 +1,103 @@
+.login-container-reg {
+    min-height: 100vh !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #f5f5f5 !important;
+}
+
+.login-card-reg {
+    max-width: 1000px !important;
+    margin: auto !important;
+    overflow: hidden !important;
+    display: flex !important;
+    background-color: #ffffff !important;
+}
+
+.image-section-reg {
+    position: relative !important;
+    flex: 1 !important;
+    min-height: 700px !important;
+    min-width: 300px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    color: white !important;
+    text-align: center !important;
+    padding: 2rem !important;
+    overflow: hidden !important;
+}
+
+.video-background-reg {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    transform: translate(-50%, -50%) !important;
+    object-fit: cover !important;
+    z-index: 0 !important;
+}
+
+.content-overlay-register1 {
+    position: relative !important;
+    z-index: 2 !important;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    min-height: 450px !important;
+    min-width: 400px !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 2rem !important;
+}
+
+.form-section-reg {
+    flex: 1 !important;
+    padding: 2rem !important;
+    min-width: 300px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.form-title-reg {
+    text-align: center !important;
+    margin-top: 40px !important;
+    margin-bottom: 20px !important;
+}
+
+.form-button-reg {
+    margin-top: 2rem !important;
+    background-color: #000000 !important;
+    color: #fff !important;
+}
+
+.form-button-reg:hover {
+    background-color: #00000e !important;
+}
+
+.signup-button-reg {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 255) !important;
+    border-radius: 20px !important;
+    padding: 8px 24px !important;
+    text-transform: none !important;
+    font-weight: 500 !important;
+}
+
+.signup-button-reg:hover {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    border-color: rgba(255, 255, 255, 255) !important;
+}
+
+.form-input-reg {
+    margin-bottom: 1rem;
+}

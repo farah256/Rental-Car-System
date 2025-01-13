@@ -96,17 +96,20 @@ const Sidebar = () => {
                             justifyContent="center"
                             alignItems="center"
                         >
-                            <img
-                                src="/images_admin/4-removebg-preview.png"
-                                alt="EASERENT Logo"
-                                style={{
-                                    height: "55px",
-                                    objectFit: "contain",
-                                    marginTop: "10px",
-                                }}
-                            />
+                            <Link to="/">
+                                <img
+                                    src="/images_admin/4-removebg-preview.png"
+                                    alt="EASERENT Logo"
+                                    style={{
+                                        height: "55px",
+                                        objectFit: "contain",
+                                        marginTop: "10px",
+                                    }}
+                                />
+                            </Link>
                         </Box>
                     </MenuItem>
+
 
                     <Box paddingLeft="10%" style={{ marginTop: "50px" }}>
                         {/* Dashboard */}
@@ -168,19 +171,11 @@ const Sidebar = () => {
                         />
                         <Item
                             title="Calendar"
-                            to="/calendar"
+                            to="/admin/calendar"
                             icon={<CalendarMonthOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                             color="white"
-                        />
-                        <Item
-                            title="Notifications"
-                            to="/notifications"
-                            icon={<MessageOutlinedIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                            color="#FFFFFF"
                         />
 
                         {/* Profile Section */}
@@ -190,14 +185,7 @@ const Sidebar = () => {
                         >
                             Profile
                         </Typography>
-                        <Item
-                            title="Settings"
-                            to="/settings"
-                            icon={<SettingsOutlinedIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                            color="#FFFFFF"
-                        />
+
                         <Item
                             title="Logout"
                             icon={<LogoutOutlinedIcon />}

@@ -7,6 +7,8 @@ import com.example.carrentelsystembackend.security.service.JwtService;
 import com.example.carrentelsystembackend.security.service.UsersManagementService;
 import com.example.carrentelsystembackend.security.entity.User;
 import com.example.carrentelsystembackend.security.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -290,5 +292,41 @@ public class UsersManagementServiceImpl implements UsersManagementService {
         return reqRes;
 
     }
+    @Override
+    public Page<User> findUsersWithPagination(int offset, int pageSize){
+        Page<User> users = userRepository.findAll(PageRequest.of(offset, pageSize));
+        return  users;
+    }
+    @Override
+    public RequestResponseDTO changeUserRole(Long userId, RoleName newRole) {
+        RequestResponseDTO reqRes = new RequestResponseDTO();
+        try {
+            Optional<User> userOptional = userRepository.findById(userId);
+            if (userOptional.isPresent()) {
+                User existingUser = userOptional.get();
+
+                // Set the new role for the user
+                existingUser.setRole(newRole);
+
+                // Save the updated user
+                User updatedUser = userRepository.save(existingUser);
+
+                reqRes.setOurUser(updatedUser);
+                reqRes.setStatusCode(200);
+                reqRes.setMessage("User role updated successfully");
+            } else {
+                reqRes.setStatusCode(404);
+                reqRes.setMessage("User not found for role update");
+            }
+        } catch (Exception e) {
+            reqRes.setStatusCode(500);
+            reqRes.setMessage("Error occurred while updating user role: " + e.getMessage());
+        }
+        return reqRes;
+    }
+    public long getTotalNumberOfClients() {
+        return userRepository.count();
+    }
+
 
 }

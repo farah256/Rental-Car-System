@@ -13,12 +13,19 @@ import Home from './pages_client/Home.jsx';
 // Pages admin
 import Dashboard from "./pages_admin/Dashboard";
 import Vehicles from "./pages_admin/Vehicles/VehicleTable";
-import Users from "../src/pages_admin/Users";
+import Users from "../src/pages_admin/Users/index.jsx";
 import CarCollection from "./pages_client/CarCollection.jsx";
 import Topbar from "./pages_admin/global/Topbar.jsx";
+import Sidebar from "./pages_admin/global/Sidebar.jsx";
+import AddVehicle from "./pages_admin/Vehicles/AddVehicle";
+import UpdateVehicle from "./pages_admin/Vehicles/UpdateVehicle";
+import Settings from "./pages_admin/Settings/index.jsx"
+import Booking from "./pages_admin/Booking/index.jsx"
+import ContractView from "./pages_admin/Booking/contractView.jsx"
+import Calendar from "./pages_admin/CalendarPage/index.jsx"
+
 // Service utilisateur pour vérifier l'authentification et les rôles
 import UserService from "./services/UserService.js";
-import {Sidebar} from "lucide-react";
 
 const theme = createTheme();
 
@@ -76,6 +83,12 @@ function App() {
                                             <Route path="" element={<Dashboard />} />
                                             <Route path="users" element={<Users />} />
                                             <Route path="vehicles" element={<Vehicles />} />
+                                            <Route path="vehicles/add" element={<AddVehicle/>} />
+                                            <Route path="vehicles/update/:matricule" element={<UpdateVehicle/>} />
+                                            <Route path="settings/:userId" element={<Settings/>} />
+                                            <Route path="booking" element={<Booking/>} />
+                                            <Route path="booking/contract/:reservationId" element={<ContractView/>} />
+                                            <Route path="calendar" element={<Calendar/>} />
                                         </Routes>
                                     </main>
                                 </div>

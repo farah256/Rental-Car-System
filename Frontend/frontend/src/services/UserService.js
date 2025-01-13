@@ -37,7 +37,7 @@ class UserService{
 
     static async getYourProfile(token){
         try{
-            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`,
+            const response = await axios.get(`${UserService.BASE_URL}/admin/get-profile`,
                 {
                     headers: {Authorization: `Bearer ${token}`}
                 })
@@ -47,8 +47,9 @@ class UserService{
         }
     }
 
-    static async getUserById(userId, token){
+    static async getUserById(userId){
         try{
+            const token = localStorage.getItem('token');
             const response = await axios.get(`${UserService.BASE_URL}/admin/get-users/${userId}`,
                 {
                     headers: {Authorization: `Bearer ${token}`}
@@ -59,8 +60,9 @@ class UserService{
         }
     }
 
-    static async deleteUser(userId, token){
+    static async deleteUser(userId){
         try{
+            const token = localStorage.getItem('token');
             const response = await axios.delete(`${UserService.BASE_URL}/admin/delete/${userId}`,
                 {
                     headers: {Authorization: `Bearer ${token}`}
@@ -110,7 +112,40 @@ class UserService{
         console.log('Admin only check, role:', role);
         return this.isAuthenticated() && this.isAdmin();
     }
+    // Get Users with pagination
+    static async getPaginatedUsers(offset = 0, pageSize = 10) {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`${UserService.BASE_URL}/paginated`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                params: {
+                    offset,
+                    pageSize,
+                }
+            });
+            return response.data;
+        } catch (err) {
+            throw err;
+        }
+    }
+    static async changeUserRole(userId, newRole) {
+        try {
+            const token = localStorage.getItem('token');
 
-}
+            const response = await axios.put(
+                `${UserService.BASE_URL}/admin/${userId}/role?newRole=${newRole}`, // newRole as a query parameter
+                {},
+                {
+                    headers: {Authorization: `Bearer ${token}`}
+                }
+            );
+            return response.data;
+        } catch (err) {
+            throw err;
+        }
+    }}
 
-export default UserService;
+
+    export default UserService;

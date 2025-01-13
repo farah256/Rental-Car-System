@@ -1,7 +1,20 @@
 package com.example.carrentelsystembackend;
 
+import com.example.carrentelsystembackend.Mapper.ReservationMapper;
+import com.example.carrentelsystembackend.Service.*;
+import com.example.carrentelsystembackend.Service.impl.*;
+import com.example.carrentelsystembackend.dto.ReservationDTO;
+import com.example.carrentelsystembackend.entity.Reservation;
+import com.example.carrentelsystembackend.enums.StatusReservation;
+import com.example.carrentelsystembackend.repository.ReservationRepository;
+import jakarta.mail.MessagingException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class CarRentelSystemBackendApplication {
@@ -10,31 +23,7 @@ public class CarRentelSystemBackendApplication {
 
         SpringApplication.run(CarRentelSystemBackendApplication.class, args);
 
+
     }
-//
-//    @Bean
-//    CommandLineRunner start(UserRepository userRepository, AccountService accountService, RoleRepository roleRepository)
-//    {
-//        return args -> {
-//           Role admin = new Role(RoleName.ADMIN);
-//           Role user = new Role(RoleName.USER);
-//
-//           accountService.addNewRole(admin);
-//           accountService.addNewRole(user);
-//
-//           User user1= userRepository.findByEmail("salma@gmail.com").orElse(null);
-//
-//           List<Role> roles=new ArrayList<>();
-//           roles.add(user);
-//           roles.add(admin);
-//
-//           accountService.addRoleToUser(user1,roles);
-//
-//
-//
-//        };
-//    }
-
-
 }
 

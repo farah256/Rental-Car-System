@@ -11,10 +11,13 @@ import com.example.carrentelsystembackend.entity.Vehicule;
 import com.example.carrentelsystembackend.enums.StatusReservation;
 import com.example.carrentelsystembackend.enums.VehiculeStatut;
 import com.example.carrentelsystembackend.exception.MailNotFoundException;
+import com.example.carrentelsystembackend.exception.OurException;
 import com.example.carrentelsystembackend.exception.ReservationNotFoundException;
 import com.example.carrentelsystembackend.repository.ReservationRepository;
 import com.example.carrentelsystembackend.repository.VehiculeRepository;
 import jakarta.mail.MessagingException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -54,8 +57,8 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setDateCreaction(new Date());
         reservation.setStatusReservation(StatusReservation.IN_PROGRESS);
         // update vehicule status
-        VehiculeDTO vehiculeDTO =vehiculeService.getVehiculeById(reservationDTO.getMatricule());
-        vehiculeService.updateStatutVehicule(vehiculeDTO.getMatricule(),VehiculeStatut.Waiting);
+        Vehicule vehicule =vehiculeService.getVehiculeById(reservationDTO.getMatricule());
+        vehiculeService.updateStatutVehicule(vehicule.getMatricule(),VehiculeStatut.Waiting);
         // save reservation
         Reservation reservationSaved=reservationRepository.save(reservation);
 
@@ -68,9 +71,9 @@ public class ReservationServiceImpl implements ReservationService {
                 orElseThrow( ()-> new ReservationNotFoundException("Reservation Id Not Found !!") );
 
         // update vehicule status
-        VehiculeDTO vehiculeDTO =vehiculeService.getVehiculeById(reservation.getVehicule().getMatricule());
+        Vehicule vehicule =vehiculeService.getVehiculeById(reservation.getVehicule().getMatricule());
 
-        vehiculeService.updateStatutVehicule(vehiculeDTO.getMatricule(),VehiculeStatut.Available);
+        vehiculeService.updateStatutVehicule(vehicule.getMatricule(),VehiculeStatut.Available);
        // reservation
         reservation.setStatusReservation(StatusReservation.CANCELLED);
 
@@ -92,8 +95,8 @@ public class ReservationServiceImpl implements ReservationService {
                 .orElseThrow(() -> new ReservationNotFoundException("Reservation Id Not Found !!"));
 
         // Mise à jour du statut du véhicule
-        VehiculeDTO vehiculeDTO = vehiculeService.getVehiculeById(reservation.getVehicule().getMatricule());
-        vehiculeService.updateStatutVehicule(vehiculeDTO.getMatricule(), VehiculeStatut.Booked);
+        Vehicule vehicule = vehiculeService.getVehiculeById(reservation.getVehicule().getMatricule());
+        vehiculeService.updateStatutVehicule(vehicule.getMatricule(), VehiculeStatut.Booked);
 
         // Mise à jour du statut de la réservation
         reservation.setStatusReservation(StatusReservation.CONFIRMED);
@@ -165,7 +168,32 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationDTOS;
     }
 
+    @Override
+    public Page<Reservation> findBookingWithPagination(int offset, int pageSize) {
+        Page<Reservation> reservations = reservationRepository.findAll(PageRequest.of(offset, pageSize));
+        return  reservations;
+    }
+    @Override
+    public Reservation updateBookingStatus(Long reservationId, StatusReservation newStatus) {
+        Reservation booking = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new RuntimeException("Booking not found with id: " + reservationId));
 
+        booking.setStatusReservation(newStatus);
+        return reservationRepository.save(booking);
+
+    }
+
+    @Override
+    public Reservation getReservationById(Long idReservation) {
+        Reservation reservation = reservationRepository.findById(idReservation).orElseThrow(() ->
+                new OurException("Reservation with id [" + idReservation + "] not found!"));
+        return reservation;
+    }
+
+    @Override
+    public long getTotalNumberOfReservations() {
+        return reservationRepository.count();
+    }
 
 
 }

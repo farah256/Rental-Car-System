@@ -3,10 +3,24 @@ import axios from 'axios';
 class VehicleService {
     static BASE_URL = "http://localhost:8082/api/account/vehicules";
 
+    // Helper method to get the authorization header
+      static getAuthHeader() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('No authentication token found');
+        }
+        return { 'Authorization': `Bearer ${token}`,
+                "Content-type":"application/json"
+
+        };
+    }
+
     // Get all vehicles
     static async getAllVehicles() {
         try {
-            const response = await axios.get(`${VehicleService.BASE_URL}`);
+            const response = await axios.get(`${VehicleService.BASE_URL}`, {
+                headers: this.getAuthHeader()
+            });
             return response.data;
         } catch (err) {
             throw err;
@@ -16,41 +30,43 @@ class VehicleService {
     // Get a vehicle by matricule (ID)
     static async getVehicleById(matricule) {
         try {
-            const response = await axios.get(`${VehicleService.BASE_URL}/${matricule}`);
-            return response.data;
+            const response = await axios.get(`${this.BASE_URL}/${matricule}`, {
+                headers: this.getAuthHeader(),
+                withCredentials: true
+            });
+            return response;
         } catch (err) {
             throw err;
         }
     }
 
     // Add a new vehicle
-    static async addVehicle(vehiculeDTO, file) {
-        const formData = new FormData();
-        formData.append("vehiculeDTO", JSON.stringify(vehiculeDTO));
-        formData.append("image", file);
-
+    static async addVehicle(formData) {
         try {
-            const response = await axios.post(`${VehicleService.BASE_URL}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+            const response = await axios.post(
+                `${this.BASE_URL}`, formData,
+
+                {
+                    headers: {
+                        ...this.getAuthHeader(),
+                        "Content-Type": "multipart/form-data"
+                    }
+                });
             return response.data;
-        } catch (err) {
+        }catch (err) {
             throw err;
+
         }
     }
+
 
     // Update a vehicle by matricule (ID)
-    static async updateVehicle(matricule, vehiculeDTO, file) {
-        const formData = new FormData();
-        formData.append("vehiculeDTO", JSON.stringify(vehiculeDTO));
-        formData.append("image", file);
-
+    static async updateVehicle(matricule, formData) {
         try {
-            const response = await axios.put(`${VehicleService.BASE_URL}/api/admin/vehicule/${matricule}`, formData, {
+            const response = await axios.put(`${this.BASE_URL}/${matricule}`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    ...this.getAuthHeader(),
+                    'Content-Type': 'multipart/form-data',
                 }
             });
             return response.data;
@@ -58,11 +74,14 @@ class VehicleService {
             throw err;
         }
     }
+
 
     // Delete a vehicle by matricule (ID)
     static async deleteVehicle(matricule) {
         try {
-            const response = await axios.delete(`${VehicleService.BASE_URL}/${matricule}`);
+            const response = await axios.delete(`${VehicleService.BASE_URL}/${matricule}`, {
+                headers: this.getAuthHeader()
+            });
             return response.data;
         } catch (err) {
             throw err;
@@ -73,9 +92,8 @@ class VehicleService {
     static async searchVehicles(keyword) {
         try {
             const response = await axios.get(`${VehicleService.BASE_URL}/search`, {
-                params: {
-                    keyword: keyword
-                }
+                headers: this.getAuthHeader(),
+                params: { keyword: keyword }
             });
             return response.data;
         } catch (err) {
@@ -87,10 +105,8 @@ class VehicleService {
     static async getPaginatedVehicles(offset = 0, pageSize = 10) {
         try {
             const response = await axios.get(`${VehicleService.BASE_URL}/paginated`, {
-                params: {
-                    offset: offset,
-                    pageSize: pageSize
-                }
+                headers: this.getAuthHeader(),
+                params: { offset, pageSize }
             });
             return response.data;
         } catch (err) {
@@ -102,10 +118,8 @@ class VehicleService {
     static async getSortedVehicles(sortBy, direction) {
         try {
             const response = await axios.get(`${VehicleService.BASE_URL}/sorted`, {
-                params: {
-                    sortBy: sortBy,
-                    direction: direction
-                }
+                headers: this.getAuthHeader(),
+                params: { sortBy, direction }
             });
             return response.data;
         } catch (err) {
@@ -116,7 +130,9 @@ class VehicleService {
     // Get vehicles by type
     static async getVehiclesByType(type) {
         try {
-            const response = await axios.get(`${VehicleService.BASE_URL}/by-type/${type}`);
+            const response = await axios.get(`${VehicleService.BASE_URL}/by-type/${type}`, {
+                headers: this.getAuthHeader()
+            });
             return response.data;
         } catch (err) {
             throw err;
@@ -126,21 +142,39 @@ class VehicleService {
     // Get vehicles by status
     static async getVehiclesByStatus(status) {
         try {
-            const response = await axios.get(`${VehicleService.BASE_URL}/by-status/${status}`);
+            const response = await axios.get(`${VehicleService.BASE_URL}/by-status/${status}`, {
+                headers: this.getAuthHeader()
+            });
             return response.data;
         } catch (err) {
             throw err;
         }
     }
 
-    // Get total number of vehicles
-    static async getTotalNumberOfVehicles() {
-        try {
-            const response = await axios.get(`${VehicleService.BASE_URL}/total`);
-            return response.data;
-        } catch (err) {
-            throw err;
-        }
+
+
+    // Helper method to check if user has admin access
+    static adminOnly() {
+        const role = localStorage.getItem('role');
+        return this.isAuthenticated() && this.isAdmin();
+    }
+
+    // Helper method to check if user is authenticated
+    static isAuthenticated() {
+        const token = localStorage.getItem('token');
+        return !!token;
+    }
+
+    // Helper method to check if user has admin role
+    static isAdmin() {
+        const role = localStorage.getItem('role');
+        return role === 'ADMIN';
+    }
+
+    // Helper method to check if user has user role
+    static isUser() {
+        const role = localStorage.getItem('role');
+        return role === 'USER';
     }
 }
 

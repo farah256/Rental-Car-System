@@ -2,8 +2,11 @@ package com.example.carrentelsystembackend.web;
 
 import com.example.carrentelsystembackend.Service.ReservationService;
 import com.example.carrentelsystembackend.dto.ReservationDTO;
+import com.example.carrentelsystembackend.entity.Reservation;
+import com.example.carrentelsystembackend.entity.Vehicule;
 import com.example.carrentelsystembackend.enums.StatusReservation;
 import jakarta.mail.MessagingException;
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -92,4 +95,27 @@ public class ReservationController {
         List<ReservationDTO> reservations = reservationService.listeReservation();
         return ResponseEntity.ok(reservations);
     }
+    @GetMapping("/paginated")
+    public Page<Reservation> getVehiculesWithPagination(
+            @RequestParam(defaultValue = "0") int offset,
+            @RequestParam(defaultValue = "10") int pageSize) {
+        Page<Reservation> reservations = reservationService.findBookingWithPagination(offset,pageSize);
+        return reservations;
+    }
+    @PutMapping("/{reservationId}/status")
+    public ResponseEntity<Reservation> updateBookingStatus(
+            @PathVariable Long reservationId,
+            @RequestParam StatusReservation newStatus) {
+        Reservation updatedBooking = reservationService.updateBookingStatus(reservationId, newStatus);
+        return ResponseEntity.ok(updatedBooking);
+    }
+    @GetMapping("/{reservationId}")
+    public Reservation getReservationById(@PathVariable Long reservationId){
+        return reservationService.getReservationById(reservationId);
+    }
+    @GetMapping("/total/bookings")
+    public long getTotalNumberOfBookings() {
+        return reservationService.getTotalNumberOfReservations();
+    }
+
 }

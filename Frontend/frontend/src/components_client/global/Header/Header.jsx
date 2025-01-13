@@ -4,14 +4,17 @@ import {
     Navbar,
     Offcanvas,
     Nav,
+    Dropdown,
 } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
+import { User } from "lucide-react";
 import "../Header/Header.css";
 
 const Header = () => {
     const [open, setOpen] = useState(false);
-    const [logo, setLogo] = useState("/images_client/2-removebg-preview (2).png"); // Default logo
-    const navigate = useNavigate(); // Hook to programmatically navigate
+    const [logo, setLogo] = useState("/images_client/2-removebg-preview (2).png");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setOpen(!open);
@@ -19,6 +22,7 @@ const Header = () => {
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
+        checkLoginStatus();
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
@@ -29,10 +33,10 @@ const Header = () => {
         const scrollTop = window.scrollY;
         if (scrollTop >= 120) {
             header.classList.add("is-sticky");
-            setLogo("/images_client/3-removebg-preview.png"); // Sticky logo when scrolled down
+            setLogo("/images_client/3-removebg-preview.png");
         } else {
             header.classList.remove("is-sticky");
-            setLogo("/images_client/2-removebg-preview (2).png"); // Default logo
+            setLogo("/images_client/2-removebg-preview (2).png");
         }
     };
 
@@ -42,39 +46,49 @@ const Header = () => {
         }
     };
 
-    // Navigate to login page
+    const checkLoginStatus = () => {
+        const token = localStorage.getItem('token');
+        setIsLoggedIn(!!token);
+    };
+
     const handleLoginNavigate = () => {
         navigate("/login");
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+        navigate('/');
+    };
+
+    const handleSettings = () => {
+        navigate('/settings');
     };
 
     return (
         <header className="header-section">
             <Container>
                 <Navbar expand="lg" className="p-0">
-                    {/* Logo Section */}
                     <Navbar.Brand>
                         <img
                             src={logo}
                             alt="Logo"
-                            className={`header-logo`}
+                            className="header-logo"
                         />
                     </Navbar.Brand>
-                    {/* End Logo Section */}
 
                     <Navbar.Offcanvas
-                        id={`offcanvasNavbar-expand-lg`}
-                        aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+                        id="offcanvasNavbar-expand-lg"
+                        aria-labelledby="offcanvasNavbarLabel-expand-lg"
                         placement="start"
                         show={open}
                     >
-                        {/* Mobile Logo Section */}
                         <Offcanvas.Header>
                             <h1 className="logo">Weekendmonks</h1>
                             <span className="navbar-toggler ms-auto" onClick={toggleMenu}>
                                 <i className="bi bi-x-lg"></i>
                             </span>
                         </Offcanvas.Header>
-                        {/* End Mobile Logo Section */}
 
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
@@ -85,7 +99,7 @@ const Header = () => {
                                     Vehicles
                                 </NavLink>
                                 <NavLink className="nav-link" to="/rent" onClick={closeMenu}>
-                                    Rent
+                                    Rents
                                 </NavLink>
                                 <NavLink className="nav-link" to="/contact-us" onClick={closeMenu}>
                                     CONTACT
@@ -93,14 +107,27 @@ const Header = () => {
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
-                    {/* Login/Register Button */}
+
                     <div className="ms-md-4 ms-2">
-                        <button
-                            className="banner-btn see-all"
-                            onClick={handleLoginNavigate}
-                        >
-                            Login/Register
-                        </button>
+                        {isLoggedIn ? (
+                            <Dropdown>
+                                <Dropdown.Toggle variant="link" className="banner-btn see-all p-2">
+                                    <User size={20} />
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={handleSettings}>Settings</Dropdown.Item>
+                                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        ) : (
+                            <button
+                                className="banner-btn see-all"
+                                onClick={handleLoginNavigate}
+                            >
+                                Login/Register
+                            </button>
+                        )}
                     </div>
                 </Navbar>
             </Container>

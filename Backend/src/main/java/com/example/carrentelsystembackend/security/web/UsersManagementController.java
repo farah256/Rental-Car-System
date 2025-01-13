@@ -1,8 +1,10 @@
 package com.example.carrentelsystembackend.security.web;
 
+import com.example.carrentelsystembackend.enums.RoleName;
 import com.example.carrentelsystembackend.security.dto.RequestResponseDTO;
 import com.example.carrentelsystembackend.security.entity.User;
 import com.example.carrentelsystembackend.security.service.UsersManagementService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -19,65 +21,79 @@ public class UsersManagementController {
     public UsersManagementController(UsersManagementService usersManagementService) {
         this.usersManagementService = usersManagementService;
     }
+
     // methods
     @PostMapping("/auth/register")
-    public ResponseEntity<RequestResponseDTO> regeister(@RequestBody RequestResponseDTO reg){
+    public ResponseEntity<RequestResponseDTO> regeister(@RequestBody RequestResponseDTO reg) {
         return ResponseEntity.ok(usersManagementService.register(reg));
     }
 
     @PostMapping("/admin/register-admin")
     @PreAuthorize("hasRole('ADMIN')")  // Sécurise la route
-    public ResponseEntity<RequestResponseDTO> registerAdmin(@RequestBody RequestResponseDTO reg){
+    public ResponseEntity<RequestResponseDTO> registerAdmin(@RequestBody RequestResponseDTO reg) {
         return ResponseEntity.ok(usersManagementService.registerAdmin(reg));
     }
 
 
     @PostMapping("/auth/login")
-    public ResponseEntity<RequestResponseDTO> login(@RequestBody RequestResponseDTO req){
+    public ResponseEntity<RequestResponseDTO> login(@RequestBody RequestResponseDTO req) {
         return ResponseEntity.ok(usersManagementService.login(req));
     }
+
     @PostMapping("/auth/logout")
     public ResponseEntity<RequestResponseDTO> logout(@RequestHeader("Authorization") String token) {
         return ResponseEntity.ok(usersManagementService.logout(token));
     }
 
     @PostMapping("/auth/refresh")
-    public ResponseEntity<RequestResponseDTO> refreshToken(@RequestBody RequestResponseDTO req){
+    public ResponseEntity<RequestResponseDTO> refreshToken(@RequestBody RequestResponseDTO req) {
         return ResponseEntity.ok(usersManagementService.refreshToken(req));
     }
 
     @GetMapping("/admin/get-all-users")
-    public ResponseEntity<RequestResponseDTO> getAllUsers(){
+    public ResponseEntity<RequestResponseDTO> getAllUsers() {
         return ResponseEntity.ok(usersManagementService.getAllUsers());
 
     }
 
     @GetMapping("/admin/get-users/{userId}")
-    public ResponseEntity<RequestResponseDTO> getUSerByID(@PathVariable Long userId){
+    public ResponseEntity<RequestResponseDTO> getUSerByID(@PathVariable Long userId) {
         return ResponseEntity.ok(usersManagementService.getUsersById(userId));
 
     }
 
     @PutMapping("/admin/update/{userId}")
-    public ResponseEntity<RequestResponseDTO> updateUser(@PathVariable Long userId, @RequestBody User reqres){
+    public ResponseEntity<RequestResponseDTO> updateUser(@PathVariable Long userId, @RequestBody User reqres) {
         return ResponseEntity.ok(usersManagementService.updateUser(userId, reqres));
     }
 
-    @GetMapping("/adminuser/get-profile")
-    public ResponseEntity<RequestResponseDTO> getMyProfile(){
+    @GetMapping("/admin/get-profile")
+    public ResponseEntity<RequestResponseDTO> getMyProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         RequestResponseDTO response = usersManagementService.getMyInfo(email);
-        return  ResponseEntity.status(response.getStatusCode()).body(response);
+        return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
     @DeleteMapping("/admin/delete/{userId}")
-    public ResponseEntity<RequestResponseDTO> deleteUSer(@PathVariable Long userId){
+    public ResponseEntity<RequestResponseDTO> deleteUSer(@PathVariable Long userId) {
         return ResponseEntity.ok(usersManagementService.deleteUser(userId));
     }
 
-
-
+    @GetMapping("/paginated")
+    public Page<User> findUsersWithPagination(@RequestParam(defaultValue = "0") int offset,
+                                              @RequestParam(defaultValue = "10") int pageSize) {
+        Page<User> users = usersManagementService.findUsersWithPagination(offset, pageSize);
+        return users;
+    }
+    @PutMapping("/admin/{userId}/role")
+    public RequestResponseDTO changeUserRole(@PathVariable Long userId, @RequestParam RoleName newRole) {
+        return usersManagementService.changeUserRole(userId, newRole);
+    }
+    @GetMapping("/total/clients")
+    public long getTotalNumberOfClients() {
+        return usersManagementService.getTotalNumberOfClients();
+    }
 
 
 

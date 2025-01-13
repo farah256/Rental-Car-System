@@ -8,6 +8,7 @@ import com.example.carrentelsystembackend.enums.VehiculeStatut;
 import com.example.carrentelsystembackend.enums.VehiculeType;
 import com.example.carrentelsystembackend.exception.OurException;
 import com.example.carrentelsystembackend.repository.VehiculeRepository;
+import org.eclipse.angus.mail.iap.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.util.StringUtils;
@@ -33,49 +34,48 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     @Override
-    public List<VehiculeDTO> getVehicule(){
+    public List<Vehicule> getVehicule(){
         List<Vehicule> vehicules = vehiculeRepository.findAll();
-        List<VehiculeDTO> vehiculeDTOS = vehiculeMapper.mapVehiculeListToVehiculeDTOList(vehicules);
-        return vehiculeDTOS;
+        return vehicules;
     }
 
     @Override
-    public VehiculeDTO getVehiculeById(String matricule) {
+    public Vehicule getVehiculeById(String matricule) {
 
         Vehicule vehicule = vehiculeRepository.findById(matricule).orElseThrow(() ->
                         new OurException("Vehicule with matricule [" + matricule + "] not found!"));
-        VehiculeDTO vehiculeDTO = vehiculeMapper.mapVehiculeToVehiculeDTO(vehicule);
-        return vehiculeDTO;
+        return vehicule;
     }
 
 
     @Override
-    public void addVehicule(VehiculeDTO vehiculeDTO, MultipartFile imageFile) throws IOException {
-        Vehicule vehicule = vehiculeMapper.mapVehiculeDTOToVehicule(vehiculeDTO);
-//        String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
-//        if(fileName.contains("..")){
-//            System.out.println("Not Valid!");
-//        }
+    public void addVehicule(String matricule, String brand, String model, int year,
+                                VehiculeType type, float price, VehiculeStatut statu, MultipartFile imageFile)throws IOException {
+        Vehicule vehicule =new Vehicule();
+        vehicule.setMatricule(matricule);
+        vehicule.setBrand(brand);
+        vehicule.setModel(model);
+        vehicule.setYear(year);
+        vehicule.setType(type);
+        vehicule.setPrice(price);
+        vehicule.setStatu(statu);
         vehicule.setImage(imageFile.getBytes());
-        vehiculeMapper.mapVehiculeToVehiculeDTO(vehiculeRepository.save(vehicule));
+        vehiculeRepository.save(vehicule);
 
-
-    }
+        }
 
     @Override
-    public void updateVehicule(String matricule, VehiculeDTO vehiculeDTO, MultipartFile imageFile) {
+    public void updateVehicule(String matricule, String brand, String model, int year,
+                               VehiculeType type, float price, VehiculeStatut statu, MultipartFile imageFile) {
         try {
             // Fetch the vehicle from the database
             Vehicule vehicule = vehiculeRepository.findById(matricule)
                     .orElseThrow(() -> new OurException("Vehicule with matricule [" + matricule + "] not found!"));
 
             // Update vehicle properties
-            vehicule.setType(vehiculeDTO.getType());
-            vehicule.setPrice(vehiculeDTO.getPrice());
-
-
-                // Convert image to Base64 string and set it
-                vehicule.setImage(imageFile.getBytes());
+            vehicule.setPrice(price);
+            vehicule.setStatu(statu);
+            vehicule.setImage(imageFile.getBytes());
 
             // Save the updated vehicle back to the database
             vehiculeRepository.save(vehicule);
@@ -109,8 +109,8 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
     @Override
     public Page<Vehicule> findVehiculesWithPagination(int offset, int pageSize){
-        Page<Vehicule> products = vehiculeRepository.findAll(PageRequest.of(offset, pageSize));
-        return  products;
+        Page<Vehicule> vehicules = vehiculeRepository.findAll(PageRequest.of(offset, pageSize));
+        return  vehicules;
     }
     @Override
     public List<Vehicule> getSortedVehicules(String sortBy,String direction) {

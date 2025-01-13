@@ -1,0 +1,103 @@
+/* ContractView.css */
+
+/* Container */
+.contract-view-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Reservation Details */
+.reservation-details {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-title {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.reservation-info {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.reservation-info p {
+    margin: 8px 0;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    color: #007bff;
+    margin-top: 20px;
+}
+
+.vehicle-info, .user-info {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.vehicle-info p, .user-info p {
+    margin: 8px 0;
+}
+
+/* Error and No Reservation Message */
+.error-message, .no-reservation {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ff4d4d;
+    margin-top: 20px;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .contract-view-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .reservation-title {
+        font-size: 1.3rem;
+    }
+
+    .reservation-info, .vehicle-info, .user-info {
+        font-size: 1rem;
+    }
+}
+
+/* Vehicle image styling */
+.car-image {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.vehicle-image {
+    width: 100%;
+    max-width: 400px; /* Limit the width of the image */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    object-fit: cover; /* Maintain the aspect ratio and fill the space */
+}
+
+.vehicle-info p {
+    margin: 8px 0;
+}

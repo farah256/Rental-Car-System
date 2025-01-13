@@ -9,9 +9,9 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: theme.palette.success.main, // Available status color
+        backgroundColor: "#4CAF50", // Green for available
         borderRadius: "20px",
-        color: theme.palette.grey[100],
+        color: "#FFFFFF",
         fontWeight: "bold",
         textAlign: "center",
     },
@@ -23,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: theme.palette.error.main, // Under Maintenance status color
+        backgroundColor: "#F44336", // Red for under maintenance
         borderRadius: "20px",
-        color: theme.palette.grey[100],
+        color: "#FFFFFF",
         fontWeight: "bold",
         textAlign: "center",
     },
@@ -37,9 +37,9 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: theme.palette.grey, // booked status color
+        backgroundColor: "#FF9800", // Orange for booked
         borderRadius: "20px",
-        color: theme.palette.grey[100],
+        color: "#FFFFFF",
         fontWeight: "bold",
         textAlign: "center",
     },
@@ -51,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: theme.palette.success, // Taken status color
+        backgroundColor: "#3F51B5", // Blue for taken
         borderRadius: "20px",
-        color: theme.palette.grey[100],
+        color: "#FFFFFF",
         fontWeight: "bold",
         textAlign: "center",
     },
@@ -65,9 +65,9 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: theme.palette.primary.main, // waiting status color
+        backgroundColor: "#9C27B0", // Purple for waiting
         borderRadius: "20px",
-        color: theme.palette.grey[100],
+        color: "#FFFFFF",
         fontWeight: "bold",
         textAlign: "center",
     },
