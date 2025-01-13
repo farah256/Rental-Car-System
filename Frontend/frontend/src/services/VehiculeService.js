@@ -7,7 +7,12 @@ class VehicleService {
     static async getAllVehicles() {
         try {
             const response = await axios.get(`${VehicleService.BASE_URL}`);
-            return response.data;
+            // Convertir les images BLOB en base64 pour chaque véhicule
+            const vehiclesWithImages = response.data.map(vehicle => ({
+                ...vehicle,
+                image: vehicle.image ? `data:image/jpeg;base64,${vehicle.image}` : null
+            }));
+            return vehiclesWithImages;
         } catch (err) {
             throw err;
         }

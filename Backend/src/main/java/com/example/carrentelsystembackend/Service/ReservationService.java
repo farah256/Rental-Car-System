@@ -21,6 +21,7 @@ public interface ReservationService {
     boolean verifierDisponibilite(String matricule, Date debut, Date fin);
     float calculerChargeFixe(Long idReservation);
     List<ReservationDTO> listeReservation();
+    public List<ReservationDTO> listeReservationParUtilisateur(Long userId);
 
 
 }

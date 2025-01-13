@@ -37,7 +37,7 @@ class UserService{
 
     static async getYourProfile(token){
         try{
-            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`,
+            const response = await axios.get(`${UserService.BASE_URL}/account/get-profile`,
                 {
                     headers: {Authorization: `Bearer ${token}`}
                 })
@@ -83,6 +83,7 @@ class UserService{
             throw err;
         }
     }
+
 
     /**AUTHENTICATION CHECKER */
     static logout(){

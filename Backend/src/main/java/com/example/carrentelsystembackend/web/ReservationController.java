@@ -5,9 +5,7 @@ import com.example.carrentelsystembackend.dto.ReservationDTO;
 import com.example.carrentelsystembackend.enums.StatusReservation;
 import jakarta.mail.MessagingException;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -55,6 +53,8 @@ public class ReservationController {
         }
     }
 
+
+
     // Archiver une réservation     ### deja testee
     @PutMapping("/{id}/archive")
     public ResponseEntity<ReservationDTO> archiverReservation(@PathVariable Long id) {
@@ -90,6 +90,12 @@ public class ReservationController {
     @GetMapping
     public ResponseEntity<List<ReservationDTO>> listeReservation() {
         List<ReservationDTO> reservations = reservationService.listeReservation();
+        return ResponseEntity.ok(reservations);
+    }
+    // Récupérer la liste des réservations pour un utilisateur
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<ReservationDTO>> listeReservationParUtilisateur(@PathVariable Long userId) {
+        List<ReservationDTO> reservations = reservationService.listeReservationParUtilisateur(userId);
         return ResponseEntity.ok(reservations);
     }
 }

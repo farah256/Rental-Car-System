@@ -63,7 +63,7 @@ public class UsersManagementController {
         return ResponseEntity.ok(usersManagementService.updateUser(userId, reqres));
     }
 
-    @GetMapping("/adminuser/get-profile")
+    @GetMapping("/account/get-profile")
     public ResponseEntity<RequestResponseDTO> getMyProfile(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();

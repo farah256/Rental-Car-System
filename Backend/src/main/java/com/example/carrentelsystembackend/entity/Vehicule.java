@@ -24,6 +24,8 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @NotNull
     private VehiculeStatut statu;
+    @Lob
+    @Column(name = "image", columnDefinition = "LONGBLOB")
     private byte[] image;
 
     public Vehicule() {

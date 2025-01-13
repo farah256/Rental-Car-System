@@ -164,6 +164,16 @@ public class ReservationServiceImpl implements ReservationService {
 
         return reservationDTOS;
     }
+    @Override
+    public List<ReservationDTO> listeReservationParUtilisateur(Long userId) {
+        List<Reservation> reservationList = reservationRepository.findByUserId(userId);
+        if (reservationList == null || reservationList.isEmpty()) {
+            throw new ReservationNotFoundException("Aucune réservation trouvée pour l'utilisateur avec l'ID " + userId);
+        }
+        return reservationList.stream()
+                .map(reservationMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 
 
 

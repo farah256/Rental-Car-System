@@ -5,9 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f41e69-a102-4757-8de5-973b010c2259" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/public/images_client/bg-carList.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/CarBookingForm/CarBookingForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/CarCard/CarCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Filters/Filters.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_client/Rent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_client/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_client/useStyles.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/frontend/src/services/BookingService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_12_2024_21_03__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_12_2024_01_18_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_12_2024_01_18__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_12_2024_20_28__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2024_01_17_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2024_01_17__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/ReservationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/ReservationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/Service/impl/ReservationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Vehicule.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/entity/Vehicule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/repository/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/repository/ReservationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/web/UsersManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/security/web/UsersManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/web/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/carrentelsystembackend/web/ReservationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Banner/Banner.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Banner/Banner.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/CarCard/index,jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_client/MyBookings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/CarCard/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_client/ReservationPayment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/CarList/CarList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/CarList/CarList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Search/Search.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/Search/Search.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Footer/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Footer/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Header/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Header/Header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/components_client/global/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/index_client.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/index_client.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/pages_client/CarCollection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/pages_client/CarCollection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/services/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/services/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/frontend/src/services/VehiculeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/frontend/src/services/VehiculeService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +166,8 @@
       <workItem from="1734903951657" duration="21975000" />
       <workItem from="1735052078339" duration="2924000" />
       <workItem from="1735076889085" duration="46000" />
+      <workItem from="1736624469911" duration="31194000" />
+      <workItem from="1736779434268" duration="7459000" />
     </task>
     <task id="LOCAL-00001" summary="Add Backend">
       <option name="closed" value="true" />

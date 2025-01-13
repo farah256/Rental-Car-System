@@ -1,16 +1,18 @@
+import React from "react";
+import CarCard from "../CarCard/CarCard.jsx";
+import "../../pages_client/index.css";
 
-
-function CarList(props){
+function CarList({carList}){
     return(
-        <div>
+        <div className="list-car">
             {
-                props.map(
-                    (car,index)=>(
-                        <div>
-
-                        </div>
-                    )
-                )
+               carList.map(
+                   (car,index)=>(
+                       <div >
+                           <CarCard car={car}/>
+                       </div>
+                   )
+               )
             }
         </div>
     )

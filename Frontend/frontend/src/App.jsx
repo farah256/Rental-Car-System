@@ -18,7 +18,12 @@ import CarCollection from "./pages_client/CarCollection.jsx";
 import Topbar from "./pages_admin/global/Topbar.jsx";
 // Service utilisateur pour vérifier l'authentification et les rôles
 import UserService from "./services/UserService.js";
-import {Sidebar} from "lucide-react";
+import Sidebar from "./pages_admin/global/Sidebar.jsx";
+
+import Rent from "./pages_client/Rent.jsx";
+import MyBookings from "./pages_client/MyBookings.jsx";
+import ReservationPayment from "./pages_client/ReservationPayment.jsx";
+
 
 const theme = createTheme();
 
@@ -27,6 +32,7 @@ function AppLayout({ children }) {
     const noHeaderFooterRoutes = ['/login', '/registration'];
 
     return (
+
         <>
             {!noHeaderFooterRoutes.includes(location.pathname) && <Header />}
             {children}
@@ -46,20 +52,30 @@ function App() {
                 <Routes>
                     {/* Routes publiques */}
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/cars" element={<CarCollection />} />
+                    <Route path="/cars" element={<AppLayout><CarCollection /></AppLayout>} />
+
                     <Route path="/registration" element={<RegistrationPage />} />
+                    <Route path="/rent/:matricule" element={<AppLayout><Rent /></AppLayout>}/>
+
+                    <Route path="/my-bookings" element={<AppLayout><MyBookings /></AppLayout>} />
+                    <Route path="/reservation_details/:idReservation" element={<ReservationPayment />} />
+
 
                     {/* Routes utilisateur authentifié */}
                     <Route
                         path="/"
                         element={
+
+
                             UserService.isAuthenticated() ? (
                                 <AppLayout>
                                     <Home />
+
                                 </AppLayout>
                             ) : (
                                 <LoginPage />
                             )
+
                         }
                     />
 
@@ -76,6 +92,7 @@ function App() {
                                             <Route path="" element={<Dashboard />} />
                                             <Route path="users" element={<Users />} />
                                             <Route path="vehicles" element={<Vehicles />} />
+
                                         </Routes>
                                     </main>
                                 </div>
@@ -85,8 +102,13 @@ function App() {
                         }
                     />
                 </Routes>
+
             </ThemeProvider>
+
         </ColorModeContext.Provider>
+
+
+
     );
 }
 
